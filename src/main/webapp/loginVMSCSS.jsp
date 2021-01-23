@@ -89,7 +89,9 @@
 .list{
 	background-color: #FFA8A4 !important;
 }
-
+.container{
+	width: 80% !important;
+}
 
 body {
 	background-color: #F3F3F3;

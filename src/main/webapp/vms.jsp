@@ -75,7 +75,7 @@
 			<div class="container body-content">
 				<table id="example"
 					class="table table-striped table-bordered table-sm sortable"
-					cellspacing="0" width="70%">
+					cellspacing="0" width="100%">
 					<thead>
 						<tr>
 							<th class="th-sm">S/N</th>
