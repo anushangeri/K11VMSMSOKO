@@ -89,7 +89,7 @@
 .list{
 	background-color: #FFA8A4 !important;
 }
-.container{
+#tableview{
 	width: 80% !important;
 }
 
