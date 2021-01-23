@@ -43,7 +43,7 @@ function validateForm() {
 				<div class="form-group col-md-6">
 					<label for="idNo">IC Number: </label> <input type="text"
 						class="form-control" name="idNo" id="idNo"
-						placeholder="SxxxxxxxJ" minlength="4" maxlength="9" required>
+						placeholder="xxxJ" minlength="4" maxlength="9" required>
 				</div>
 				<button type="submit" class="btn btn-primary">Check NRIC</button>
 			</div>
