@@ -28,7 +28,7 @@ function validateForm() {
   var forth = x.charAt(3);
   var isDigitForth = (forth >= '0' && forth <= '9');
   if (x != "K11ADMIN" && !isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth) {
-    alert("PDPA Compliance: Enter only last 3 digit and letter of NRIC/FIN. E.g. 409J" + x);
+    alert("PDPA Compliance: Enter only last 3 digit and letter of NRIC/FIN. E.g. 409J");
     return false;
   }
 }
