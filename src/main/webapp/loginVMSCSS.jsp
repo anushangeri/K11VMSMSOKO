@@ -91,6 +91,7 @@
 }
 #tableview{
 	width: 80% !important;
+	margin-left: 5% !important;
 }
 
 body {
