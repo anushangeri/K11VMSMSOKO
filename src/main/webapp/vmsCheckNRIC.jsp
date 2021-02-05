@@ -31,11 +31,8 @@
 		var isDigitSecond = (second >= '0' && second <= '9');
 		var third = x.charAt(2);
 		var isDigitThird = (third >= '0' && third <= '9');
-		var forth = x.charAt(3);
-		var isDigitForth = (forth >= '0' && forth <= '9');
-		if (x != "K11ADMIN" && !isDigitFirst || !isDigitSecond || !isDigitThird
-				|| isDigitForth) {
-			alert("PDPA Compliance: Enter only last 3 digit and letter of NRIC/FIN. E.g. 409J");
+		if (x != "K11ADMIN" && !isDigitFirst || !isDigitSecond || !isDigitThird) {
+			alert("PDPA Compliance: Enter ONLY last 3 digit of ID Number. E.g. 409");
 			return false;
 		}
 	}
@@ -43,26 +40,64 @@
 </head>
 <body>
 	<%
+		ArrayList<String> idType = new ArrayList<String>();
+		SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
+		try {
+			//Dropdown for idType START
+			String idTypeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/3/public/values";
+			// Use this String as url
+			URL idTypeurl = new URL(idTypeUrl);
+
+			// Get Feed of Spreadsheet url
+			ListFeed idTypelf = service.getFeed(idTypeurl, ListFeed.class);
+
+			for (ListEntry le : idTypelf.getEntries()) {
+				CustomElementCollection cec = le.getCustomElements();
+				idType.add(cec.getValue("idtype").trim());
+			}
+			//Dropdown for idType END
+
+		} catch (Exception e) {
+	%>
+			<h1><%=e%></h1>
+	<%
+		}
 		session.removeAttribute("usertype");
+		session.removeAttribute("name");
+		session.removeAttribute("idType");
 	%>
 	<center>
 		<b>*Individuals are required to self-identify should they
-			experience any COVID-19 symptoms.</b> <br> <br>
-		<div class="container body-content">
-			<form name="checkNRIC" action="vmsCheckNRIC" method="post"
-				onsubmit="return validateForm()">
-				<div class="form-row">
-					<div class="form-group col-lg-6">
-						<label for="idNo">IC Number: </label> <input type="text"
-							class="form-control" name="idNo" id="idNo" placeholder="xxxJ"
-							minlength="4" maxlength="9" required>
-					</div>
+			experience any COVID-19 symptoms.</b>
+		<form name="checkNRIC" action="vmsCheckNRIC" method="post"
+			onsubmit="return validateForm()">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="name">Visitor Name: </label> <input type="text"
+						class="form-control" name="name"
+						oninput="this.value = this.value.toUpperCase()" required>
+				</div>
+				<div class="form-group col-md-4">
+					<label for="idType">ID Type: </label> <select name="idType"
+						class="form-control" required>
+						<%
+						for (int i = 0; i < idType.size(); i++) {
+						%>
+						<option value="<%=idType.get(i)%>">
+							<%=idType.get(i)%></option>
+						<%
+						}
+						%>
+					</select>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="idNo">ID Number: </label> <input type="text"
+						class="form-control" name="idNo" id="idNo" placeholder="xxx"
+						minlength="3" maxlength="9" required>
 				</div>
 				<button type="submit" class="btn btn-primary">Check NRIC</button>
-				<a href="index.jsp" class="btn btn-warning btn-lg active"
-					role="button" aria-pressed="true">Back</a>
-			</form>
-		</div>
+			</div>
+		</form>
 	</center>
 </body>
 </html>
