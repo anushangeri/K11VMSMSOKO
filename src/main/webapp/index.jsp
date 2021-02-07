@@ -34,20 +34,19 @@
 		<br>
 		<div class="container">
 			<div class="card bg-dark text-white">
-				<div class="card-body font-size-percent">
+				<div id="generatepayslip" class="card-body font-size-percent">
 					<form id="removeBackground" method="POST" action ="vmsCheckNRIC.jsp">
 						<input type="hidden" id="recordType" name="recordType" value="visitorRecord">
-						<input id="removeBackground" type="submit" name="Submit" value="Are you a visitor?
-						Select this."></form>
+						<input id="removeBackground" type="submit" name="Submit" value="Are you a visitor? Select this."></form>
 				</div>
 			</div>
 			<br>
 			<div class="card bg-warning text-white">
-				<div class="card-body font-size-percent">
+				<div id="generatepayslip" class="card-body font-size-percent">
 					<form id="removeBackground" method="POST" action ="vmsCheckNRIC.jsp">
 						<input type="hidden" id="recordType" name="recordType" value="visitorRecord">
 						<input id="removeBackground" type="submit" name="Submit" 
-						value="Are you a commercial vehicle / container? Select this"></form>
+						value="Are you a commercial vehicle / container? Select this."></form>
 				</div>
 			</div>
 			<br>
