@@ -177,7 +177,7 @@ form{
 #removeBackground{
 	background-color: transparent !important;
 	word-wrap: break-word !important;
-	margin-left: 5% !important;
+	margin-right: 2% !important;
 }
 /*for printing lable*/
 @media print {
