@@ -56,11 +56,20 @@
 		});
 	});
 	$(function () {
-        $("#ddlVehicle").change(function () {
+        $("#ddlLorryChet").change(function () {
             if ($(this).val() == "Y") {
-                $("#dvVehicle").show();
+                $("#dvLorryChet").show();
             } else {
-                $("#dvVehicle").hide();
+                $("#dvLorryChet").hide();
+            }
+        });
+    });
+	$(function () {
+        $("#ddlDelNotice").change(function () {
+            if ($(this).val() == "Y") {
+                $("#dvDelNotice").show();
+            } else {
+                $("#dvDelNotice").hide();
             }
         });
     });
@@ -127,12 +136,12 @@
 										else{
 									%>
 										<td>
-											<select id = "ddlVehicle" onchange = "ShowHideDiv()">
+											<select id = "ddlLorryChet" onchange = "ShowHideDiv()">
 										        <option value="N">No</option>
 										        <option value="Y">Yes</option>            
 										    </select>
 										    <hr />
-											<div id="dvVehicle" style="display: none">
+											<div id="dvLorryChet" style="display: none">
 												<form method="POST" action ="/updateVehLorryChet">
 													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="lorryChetNumber"
@@ -151,12 +160,12 @@
 										else{
 									%>
 										<td>
-											<select id = "ddlVehicle" onchange = "ShowHideDiv()">
+											<select id = "ddlDelNotice" onchange = "ShowHideDiv()">
 										        <option value="N">No</option>
 										        <option value="Y">Yes</option>            
 										    </select>
 										    <hr />
-											<div id="dvVehicle" style="display: none">
+											<div id="dvDelNotice" style="display: none">
 												<form method="POST" action ="/updateVehDeliveryNotice">
 													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="deliveryNoticeNumber"
