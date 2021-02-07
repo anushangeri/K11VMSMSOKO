@@ -15,7 +15,7 @@ import net.javatutorial.DAO.VehMSManagerDAO;
 import net.javatutorial.entity.Vehicle;
 
 /**
- * Servlet implementation class AddEmployeeServlet
+ * Servlet implementation class ViewVehicleRecordServlet
  */
 public class ViewVehicleRecordServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
@@ -45,7 +45,7 @@ public class ViewVehicleRecordServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("message", message);
-        RequestDispatcher rd = request.getRequestDispatcher("vms.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("vehms.jsp");
         rd.forward(request, response);
 	}
 	@Override
