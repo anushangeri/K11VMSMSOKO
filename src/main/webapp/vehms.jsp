@@ -54,16 +54,17 @@
 				} ]
 			});
 		});
+	    $(document).ready(function () {
+	        $("#ddlPassport").change(function () {
+	            if ($(this).val() == "Y") {
+	                $("#dvPassport").show();
+	            } else {
+	                $("#dvPassport").hide();
+	            }
+	        });
+	    });
 	});
-    $(function () {
-        $("#ddlPassport").change(function () {
-            if ($(this).val() == "Y") {
-                $("#dvPassport").show();
-            } else {
-                $("#dvPassport").hide();
-            }
-        });
-    });
+
 </script>
 </head>
 <body>
@@ -98,6 +99,7 @@
 							<th class="th-sm">Lorry Chet No.</th>
 							<th class="th-sm">Delivery Notice No.</th>
 							<th class="th-sm">Purpose of Visit</th>
+							<th class="th-sm">Temperature</th>
 							<th class="th-sm">Time In</th>
 							<th class="th-sm">Time Out</th>
 						</tr>
