@@ -44,9 +44,9 @@
 			<br>
 			<div class="card bg-warning text-white">
 				<div class="card-body font-size-percent">
-					<form method="POST" action ="vmsCheckNRIC.jsp">
+					<form id= "removeBackground" method="POST" action ="vmsCheckNRIC.jsp">
 						<input type="hidden" id="recordType" name="recordType" value="visitorRecord">
-						<input type="submit" name="Submit" value="Are you a commercial
+						<input id="removeBackground" type="submit" name="Submit" value="Are you a commercial
 					vehicle / container? Select this."></form>
 				</div>
 			</div>
