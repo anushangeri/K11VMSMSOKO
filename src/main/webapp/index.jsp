@@ -35,17 +35,19 @@
 		<div class="container">
 			<div class="card bg-dark text-white">
 				<div class="card-body font-size-percent">
-					<input type="hidden" id="recordType" name="recordType" value="visitorRecord">
-					<a id="recordType" href="vmsCheckNRIC.jsp"> Are you a visitor?
-						Select this.</a>
+					<form method="POST" action ="vmsCheckNRIC.jsp">
+						<input type="hidden" id="recordType" name="recordType" value="visitorRecord">
+						<input type="submit" name="Submit" value="Are you a visitor?
+						Select this."></form>
 				</div>
 			</div>
 			<br>
 			<div class="card bg-warning text-white">
 				<div class="card-body font-size-percent">
-					<input type="hidden" id="recordType" name="recordType" value="vehicalRecord">
-					<a id="recordType" href="vmsCheckNRIC.jsp"> Are you a commercial
-					vehicle / container? Select this.</a>
+					<form method="POST" action ="vmsCheckNRIC.jsp">
+						<input type="hidden" id="recordType" name="recordType" value="visitorRecord">
+						<input type="submit" name="Submit" value="Are you a commercial
+					vehicle / container? Select this."></form>
 				</div>
 			</div>
 			<br>
