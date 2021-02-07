@@ -35,14 +35,18 @@
 		<div class="container">
 			<div class="card bg-dark text-white">
 				<div class="card-body font-size-percent">
-					<a id="linkVMS" href="vmsCheckNRIC.jsp"> Are you a visitor?
+					<input type="hidden" id="recordType" name="recordType" value="visitorRecord">
+					<a id="recordType" href="vmsCheckNRIC.jsp"> Are you a visitor?
 						Select this.</a>
 				</div>
 			</div>
 			<br>
 			<div class="card bg-warning text-white">
-				<div class="card-body font-size-percent">Are you a commercial
-					vehicle / container? Select this.</div>
+				<div class="card-body font-size-percent">
+					<input type="hidden" id="recordType" name="recordType" value="vehicalRecord">
+					<a id="recordType" href="vmsCheckNRIC.jsp"> Are you a commercial
+					vehicle / container? Select this.</a>
+				</div>
 			</div>
 			<br>
 		</div>
