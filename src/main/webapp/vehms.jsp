@@ -40,7 +40,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ],
+						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -86,15 +86,15 @@
 					class="table table-striped table-bordered table-sm sortable">
 					<thead>
 						<tr>
-							<th class="th-sm" style="display:none;">S/N</th>
+							<th class="th-sm">S/N</th>
 							<th class="th-sm">Name</th>
 							<th class="th-sm">Company Name</th>
-							<th class="th-sm">ID Type</th>
-							<th class="th-sm">ID Number</th>
+							<th class="th-sm"  style="display:none;">ID Type</th>
+							<th class="th-sm"  style="display:none;">ID Number</th>
 							<th class="th-sm">Visitor Contact Number</th>
 							<th class="th-sm">Vehicle No./Primemover No.</th>
 							<th class="th-sm">Container No.</th>
-							<th class="th-sm">Covid Declaration?</th>
+							<th class="th-sm" style="display:none;">Covid Declaration?</th>
 							<th class="th-sm">Lorry Chet No.</th>
 							<th class="th-sm">Delivery Notice No.</th>
 							<th class="th-sm">Purpose of Visit</th>
@@ -114,12 +114,12 @@
 									<td><%=v.getVehicleId()%></td>
 									<td><%=v.getName()%></td>
 									<td><%=v.getCompanyName()%></td>
-									<td><%=v.getIdType()%></td>
-									<td><%=v.getIdNo()%></td>
+									<td style="display:none;" ><%=v.getIdType()%></td>
+									<td style="display:none;" ><%=v.getIdNo()%></td>
 									<td><%=v.getMobileNo()%></td>
 									<td><%=v.getPrimeMoverNo()%></td>
 									<td><%=v.getContainerNo()%></td>
-									<td><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
+									<td style="display:none;" ><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
 									<% if (v.getLorryChetNumber() != null && !StringUtils.isEmpty(v.getLorryChetNumber())) { %>
 										<td><%=v.getLorryChetNumber()%></td>
 									<%
@@ -127,12 +127,12 @@
 										else{
 									%>
 										<td>
-											<select id = "ddlPassport" onchange = "ShowHideDiv()">
+											<select id = "ddlVehicle" onchange = "ShowHideDiv()">
 										        <option value="N">No</option>
 										        <option value="Y">Yes</option>            
 										    </select>
 										    <hr />
-											<div id="dvPassport" style="display: none">
+											<div id="dvVehicle" style="display: none">
 												<form method="POST" action ="/updateVehLorryChet">
 													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="lorryChetNumber"
@@ -151,12 +151,12 @@
 										else{
 									%>
 										<td>
-											<select id = "ddlPassport">
+											<select id = "ddlVehicle">
 										        <option value="N">No</option>
 										        <option value="Y">Yes</option>            
 										    </select>
 										    <hr />
-											<div id="dvPassport" style="display: none">
+											<div id="dvVehicle" style="display: none">
 												<form method="POST" action ="/updateVehDeliveryNotice">
 													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="deliveryNoticeNumber"
