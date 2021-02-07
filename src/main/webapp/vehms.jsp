@@ -55,11 +55,15 @@
 			});
 		});
 	});
-	function ShowHideDiv() {
-        var ddlPassport = document.getElementById("ddlPassport");
-        var dvPassport = document.getElementById("dvPassport");
-        dvPassport.style.display = ddlPassport.value == "Y" ? "block" : "none";
-    }
+	$(function () {
+        $("#ddlPassport").change(function () {
+            if ($(this).val() == "Y") {
+                $("#dvPassport").show();
+            } else {
+                $("#dvPassport").hide();
+            }
+        });
+    });
 </script>
 </head>
 <body>
