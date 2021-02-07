@@ -175,7 +175,7 @@ form{
 	text-decoration: none !important;
 }
 #removeBackground{
-	background-color: none !important;
+	background-color: transparent !important;
 }
 /*for printing lable*/
 @media print {
