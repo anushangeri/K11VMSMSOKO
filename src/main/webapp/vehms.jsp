@@ -152,7 +152,7 @@
 										        <option value="Y">Yes</option>            
 										    </select>
 										    <hr />
-											<div id="dvPassport">
+											<div id="dvPassport" style="display: none">
 												<form method="POST" action ="/updateVehDeliveryNotice">
 													<input type="hidden" id="vehmsId" name="vehmsId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="deliveryNoticeNumber"
