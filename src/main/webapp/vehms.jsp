@@ -134,7 +134,7 @@
 										    <hr />
 											<div id="dvPassport" style="display: none">
 												<form method="POST" action ="/updateVehLorryChet">
-													<input type="hidden" id="vehmsId" name="vehmsId" value="<%=v.getVehicleId()%>">
+													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="lorryChetNumber"
 													oninput="this.value = this.value.toUpperCase()">
 													<input type="submit" name="Submit" value="Update">
@@ -158,7 +158,7 @@
 										    <hr />
 											<div id="dvPassport" style="display: none">
 												<form method="POST" action ="/updateVehDeliveryNotice">
-													<input type="hidden" id="vehmsId" name="vehmsId" value="<%=v.getVehicleId()%>">
+													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="deliveryNoticeNumber"
 													oninput="this.value = this.value.toUpperCase()">
 													<input type="submit" name="Submit" value="Update">
@@ -179,7 +179,7 @@
 										else{
 									%>
 										<td><form method="POST" action ="/updateVehTimeOut">
-											<input type="hidden" id="vmsId" name="vmsId" value="<%=v.getVehicleId()%>">
+											<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 											<input type="submit" name="Submit" value="Update"></form></td>
 									<%
 										}
