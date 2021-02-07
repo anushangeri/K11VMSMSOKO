@@ -69,7 +69,7 @@
 	<center>
 		<b>*Individuals are required to self-identify should they
 			experience any COVID-19 symptoms.</b>
-			
+
 		<form name="checkNRIC" action="vmsCheckNRIC" method="post"
 			onsubmit="return validateForm()">
 			<div class="form-row">
@@ -96,6 +96,7 @@
 						class="form-control" name="idNo" id="idNo" placeholder="xxx"
 						minlength="3" maxlength="9" required>
 				</div>
+				<input type="hidden" id="recordType" name="recordType" value=<%=request.getParameter("recordType")%>>
 				<button type="submit" class="btn btn-primary">Check NRIC</button>
 			</div>
 		</form>

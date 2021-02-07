@@ -34,7 +34,7 @@ public class VMSCheckNRICServlet extends HttpServlet {
 		String idType = request.getParameter("idType").trim();
 		String idNo = request.getParameter("idNo").trim();
 		String recordType = request.getParameter("recordType");
-		System.out.println(recordType);
+		
 		try {
 			//make idNo uppercase
         	if(idNo != null && !idNo.isEmpty() ){
@@ -94,7 +94,19 @@ public class VMSCheckNRICServlet extends HttpServlet {
 			responseObj.add("Login successful.");
 			request.setAttribute("responseObj", responseObj);
 			// Redirect to view visitor servlet to query all the visitors again.
-			response.sendRedirect("/vms");
+			if(recordType.equals("visitorRecord")) {
+				response.sendRedirect("/vms");
+			}
+			else if(recordType.equals("vehicleRecord")){
+				response.sendRedirect("/vehms");
+			}
+			else{
+				responseObj.add("NRIC/FIN is invalid. Please try again: " + idNo);
+				request.setAttribute("responseObj", responseObj);
+				rd = request.getRequestDispatcher("vmsCheckNRIC.jsp");
+				rd.forward(request, response);
+			}
+				
 		}
 		else{
 			responseObj.add("NRIC/FIN is invalid. Please try again: " + idNo);
