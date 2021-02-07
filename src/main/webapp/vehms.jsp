@@ -54,17 +54,12 @@
 				} ]
 			});
 		});
-	    $(document).ready(function () {
-	        $("#ddlPassport").change(function () {
-	            if ($(this).val() == "Y") {
-	                $("#dvPassport").show();
-	            } else {
-	                $("#dvPassport").hide();
-	            }
-	        });
-	    });
 	});
-
+	function ShowHideDiv() {
+        var ddlPassport = document.getElementById("ddlPassport");
+        var dvPassport = document.getElementById("dvPassport");
+        dvPassport.style.display = ddlPassport.value == "Y" ? "block" : "none";
+    }
 </script>
 </head>
 <body>
@@ -128,7 +123,7 @@
 										else{
 									%>
 										<td>
-											<select id = "ddlPassport">
+											<select id = "ddlPassport" onchange = "ShowHideDiv()">
 										        <option value="N">No</option>
 										        <option value="Y">Yes</option>            
 										    </select>
