@@ -157,7 +157,7 @@
 						</div>
 						<div class="form-group col-md-4">
 							<input type="checkbox" id="loadedNoLoaded"
-								name="loadedNoLoaded" value="Yes" required> <label
+								name="loadedNoLoaded" value="Yes" > <label
 								for="loadedNoLoaded"> Select if container is loaded.
 						</label>
 						</div>
