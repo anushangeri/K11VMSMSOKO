@@ -151,7 +151,7 @@
 										else{
 									%>
 										<td>
-											<select id = "ddlVehicle">
+											<select id = "ddlVehicle" onchange = "ShowHideDiv()">
 										        <option value="N">No</option>
 										        <option value="Y">Yes</option>            
 										    </select>
