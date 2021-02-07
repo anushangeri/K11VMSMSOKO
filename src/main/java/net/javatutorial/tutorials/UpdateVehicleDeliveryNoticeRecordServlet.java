@@ -39,12 +39,12 @@ public class UpdateVehicleDeliveryNoticeRecordServlet extends HttpServlet {
 		if(vehicleId != null && !StringUtils.isEmpty(vehicleId)) {
 			//retrieve Vehicle object
 			v = VehMSManagerDAO.retrieveByVehicleId(vehicleId);
-			v.setDeliveryNoticeNumber(deliveryNoticeNumber);;
+			v.setDeliveryNoticeNumber(deliveryNoticeNumber);
 			//update Vehicle object with current system time as time out
 			message = VehMSManagerDAO.updateVehicleDeliveryNotice(v);
 			
 		}
-		request.setAttribute("message", message);
+		request.setAttribute("message", v.toString());
 		// Redirect to view Vehicle servlet to query all the visitors again.
 		response.sendRedirect("/vehms");
 	}
