@@ -116,7 +116,7 @@
 									<td><%=v.getPrimeMoverNo()%></td>
 									<td><%=v.getContainerNo()%></td>
 									<td><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
-									<% if (v.getLorryChetNumber() != null) { %>
+									<% if (v.getLorryChetNumber() != null && !StringUtils.isEmpty(v.getLorryChetNumber())) { %>
 										<td><%=v.getLorryChetNumber()%></td>
 									<%
 										}
@@ -140,7 +140,7 @@
 									<%
 										}
 									%>
-									<% if (v.getDeliveryNoticeNumber() != null) { %>
+									<% if (v.getDeliveryNoticeNumber() != null && !StringUtils.isEmpty(v.getDeliveryNoticeNumber())) { %>
 										<td><%=v.getDeliveryNoticeNumber()%></td>
 									<%
 										}
