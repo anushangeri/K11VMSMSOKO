@@ -86,7 +86,7 @@
 					class="table table-striped table-bordered table-sm sortable">
 					<thead>
 						<tr>
-							<th class="th-sm">S/N</th>
+							<th class="th-sm" style="display:none;">S/N</th>
 							<th class="th-sm">Name</th>
 							<th class="th-sm">Company Name</th>
 							<th class="th-sm">ID Type</th>
