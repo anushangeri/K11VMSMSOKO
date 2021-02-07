@@ -33,7 +33,8 @@ public class VMSCheckNRICServlet extends HttpServlet {
 		String name = request.getParameter("name").trim();
 		String idType = request.getParameter("idType").trim();
 		String idNo = request.getParameter("idNo").trim();
-
+		String recordType = request.getParameter("recordType");
+		System.out.println(recordType);
 		try {
 			//make idNo uppercase
         	if(idNo != null && !idNo.isEmpty() ){

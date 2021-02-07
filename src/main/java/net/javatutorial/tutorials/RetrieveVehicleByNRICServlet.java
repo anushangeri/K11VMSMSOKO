@@ -27,6 +27,7 @@ public class RetrieveVehicleByNRICServlet extends HttpServlet {
 		String name = (String) request.getSession(false).getAttribute("name");
 		String idType = (String) request.getSession(false).getAttribute("idType");
 		String idNo = (String) request.getSession(false).getAttribute("usertype");
+		
 		ArrayList<Vehicle> vList = null;
 		Vehicle v = null;
 		
