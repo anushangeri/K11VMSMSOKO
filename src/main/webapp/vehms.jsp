@@ -56,11 +56,11 @@
 		});
 	});
 	$(function () {
-        $("#ddlPassport").change(function () {
+        $("#ddlVehicle").change(function () {
             if ($(this).val() == "Y") {
-                $("#dvPassport").show();
+                $("#dvVehicle").show();
             } else {
-                $("#dvPassport").hide();
+                $("#dvVehicle").hide();
             }
         });
     });
