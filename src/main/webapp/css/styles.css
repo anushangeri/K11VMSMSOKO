@@ -159,8 +159,7 @@ input{
     word-wrap: break-word;
 }
 form{
-	margin-left: auto;
-    margin-right: auto;
+
     text-align: left;
 	width: 80%;
 	display: inline-block;
@@ -176,7 +175,6 @@ form{
 }
 #removeBackground{
 	background-color: transparent !important;
-	word-wrap: break-word !important;
 	margin-right: 2% !important;
 }
 /*for printing lable*/
