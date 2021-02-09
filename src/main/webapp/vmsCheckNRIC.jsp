@@ -34,9 +34,8 @@
 		var isDigitThird = (third >= '0' && third <= '9');
 		var forth = idNo.charAt(3);
 		var isDigitForth = (forth >= '0' && forth <= '9');
-		if (idNo != "K11ADMIN" && (idType == "NRIC" || idType == "FIN") &&
-				(!isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth))  {
-			alert("PDPA Compliance: Enter ONLY last 3 digit and letter of ID Number. E.g. 409J");
+		if (idNo != "K11ADMIN")  {
+			alert("PDPA Compliance: Enter ONLY last 3 digit and letter of ID Number. E.g. 409J" + idType + idNo);
 			return false;
 		}
 		if (idNo != "K11ADMIN" && (idType == "PASSPORT NO.") &&
