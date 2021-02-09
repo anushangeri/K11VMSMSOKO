@@ -35,13 +35,13 @@
 		var forth = idNo.charAt(3);
 		var isDigitForth = (forth >= '0' && forth <= '9');
 		var n = idNo.length;
-		if (idNo != "K11ADMIN" && (idType == "NRIC" || idType == "FIN") && !(n >= 4) &&
-				(!isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth))  {
-			alert("PDPA Compliance: Enter ONLY last 3 digit and letter of ID Number. E.g. 409J");
+		if (idNo != "K11ADMIN" && (idType == "NRIC" || idType == "FIN") && !(n >= 4) ||
+				!isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth)  {
+			alert("PDPA Compliance: Enter ONLY last 3 digit and letter of ID Number. E.g. 409J ");
 			return false;
 		}
-		if (idNo != "K11ADMIN" && (idType == "PASSPORT NO.") && !(n >= 4) &&
-				(!isDigitFirst || !isDigitSecond || !isDigitThird || !isDigitForth))  {
+		if (idNo != "K11ADMIN" && (idType == "PASSPORT NO.") && !(n >= 4) ||
+				!isDigitFirst || !isDigitSecond || !isDigitThird || !isDigitForth)  {
 			alert("PDPA Compliance: Enter ONLY last 4 digit of Passport No. E.g. 4456");
 			return false;
 		}
