@@ -177,6 +177,7 @@ form{
 	background-color: transparent !important;
 	margin-right: 2% !important;
 }
+
 /*for printing lable*/
 @media print {
 table.eptable {

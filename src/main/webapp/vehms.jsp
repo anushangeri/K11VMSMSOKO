@@ -102,6 +102,7 @@
 							<th class="th-sm"  style="display:none;">ID Number</th>
 							<th class="th-sm">Visitor Contact Number</th>
 							<th class="th-sm">Vehicle No./Primemover No.</th>
+							<th class="th-sm">Loaded/Not Loaded</th>
 							<th class="th-sm">Container No.</th>
 							<th class="th-sm" style="display:none;">Covid Declaration?</th>
 							<th class="th-sm">Lorry Chet No.</th>
@@ -127,6 +128,7 @@
 									<td style="display:none;" ><%=v.getIdNo()%></td>
 									<td><%=v.getMobileNo()%></td>
 									<td><%=v.getPrimeMoverNo()%></td>
+									<td><%=((v.getLoadedNoLoaded() == "null") ? "Not Loaded" : "Loaded")%></td>
 									<td><%=v.getContainerNo()%></td>
 									<td style="display:none;" ><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
 									<% if (v.getLorryChetNumber() != null && !StringUtils.isEmpty(v.getLorryChetNumber())) { %>

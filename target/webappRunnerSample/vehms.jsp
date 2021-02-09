@@ -40,7 +40,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ],
+						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -55,12 +55,21 @@
 			});
 		});
 	});
-    $(function () {
-        $("#ddlPassport").change(function () {
+	$(function () {
+        $("#ddlLorryChet").change(function () {
             if ($(this).val() == "Y") {
-                $("#dvPassport").show();
+                $("#dvLorryChet").show();
             } else {
-                $("#dvPassport").hide();
+                $("#dvLorryChet").hide();
+            }
+        });
+    });
+	$(function () {
+        $("#ddlDelNotice").change(function () {
+            if ($(this).val() == "Y") {
+                $("#dvDelNotice").show();
+            } else {
+                $("#dvDelNotice").hide();
             }
         });
     });
@@ -89,15 +98,17 @@
 							<th class="th-sm">S/N</th>
 							<th class="th-sm">Name</th>
 							<th class="th-sm">Company Name</th>
-							<th class="th-sm">ID Type</th>
-							<th class="th-sm">ID Number</th>
+							<th class="th-sm"  style="display:none;">ID Type</th>
+							<th class="th-sm"  style="display:none;">ID Number</th>
 							<th class="th-sm">Visitor Contact Number</th>
 							<th class="th-sm">Vehicle No./Primemover No.</th>
+							<th class="th-sm">Loaded/Not Loaded</th>
 							<th class="th-sm">Container No.</th>
-							<th class="th-sm">Covid Declaration?</th>
+							<th class="th-sm" style="display:none;">Covid Declaration?</th>
 							<th class="th-sm">Lorry Chet No.</th>
 							<th class="th-sm">Delivery Notice No.</th>
 							<th class="th-sm">Purpose of Visit</th>
+							<th class="th-sm">Temperature</th>
 							<th class="th-sm">Time In</th>
 							<th class="th-sm">Time Out</th>
 						</tr>
@@ -113,27 +124,28 @@
 									<td><%=v.getVehicleId()%></td>
 									<td><%=v.getName()%></td>
 									<td><%=v.getCompanyName()%></td>
-									<td><%=v.getIdType()%></td>
-									<td><%=v.getIdNo()%></td>
+									<td style="display:none;" ><%=v.getIdType()%></td>
+									<td style="display:none;" ><%=v.getIdNo()%></td>
 									<td><%=v.getMobileNo()%></td>
 									<td><%=v.getPrimeMoverNo()%></td>
+									<td><%=((v.getLoadedNoLoaded() == "null") ? "Not Loaded" : "Loaded")%></td>
 									<td><%=v.getContainerNo()%></td>
-									<td><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
-									<% if (v.getLorryChetNumber() != null) { %>
+									<td style="display:none;" ><%=((v.getCovidDeclare() == "null") ? "No" : v.getCovidDeclare())%></td>
+									<% if (v.getLorryChetNumber() != null && !StringUtils.isEmpty(v.getLorryChetNumber())) { %>
 										<td><%=v.getLorryChetNumber()%></td>
 									<%
 										}
 										else{
 									%>
 										<td>
-											<select id = "ddlPassport">
+											<select id = "ddlLorryChet" onchange = "ShowHideDiv()">
 										        <option value="N">No</option>
 										        <option value="Y">Yes</option>            
 										    </select>
 										    <hr />
-											<div id="dvPassport" style="display: none">
+											<div id="dvLorryChet" style="display: none">
 												<form method="POST" action ="/updateVehLorryChet">
-													<input type="hidden" id="vehmsId" name="vehmsId" value="<%=v.getVehicleId()%>">
+													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="lorryChetNumber"
 													oninput="this.value = this.value.toUpperCase()">
 													<input type="submit" name="Submit" value="Update">
@@ -143,21 +155,21 @@
 									<%
 										}
 									%>
-									<% if (v.getDeliveryNoticeNumber() != null) { %>
+									<% if (v.getDeliveryNoticeNumber() != null && !StringUtils.isEmpty(v.getDeliveryNoticeNumber())) { %>
 										<td><%=v.getDeliveryNoticeNumber()%></td>
 									<%
 										}
 										else{
 									%>
 										<td>
-											<select id = "ddlPassport">
+											<select id = "ddlDelNotice" onchange = "ShowHideDiv()">
 										        <option value="N">No</option>
 										        <option value="Y">Yes</option>            
 										    </select>
 										    <hr />
-											<div id="dvPassport" style="display: none">
+											<div id="dvDelNotice" style="display: none">
 												<form method="POST" action ="/updateVehDeliveryNotice">
-													<input type="hidden" id="vehmsId" name="vehmsId" value="<%=v.getVehicleId()%>">
+													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="deliveryNoticeNumber"
 													oninput="this.value = this.value.toUpperCase()">
 													<input type="submit" name="Submit" value="Update">
@@ -178,7 +190,7 @@
 										else{
 									%>
 										<td><form method="POST" action ="/updateVehTimeOut">
-											<input type="hidden" id="vmsId" name="vmsId" value="<%=v.getVehicleId()%>">
+											<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 											<input type="submit" name="Submit" value="Update"></form></td>
 									<%
 										}
