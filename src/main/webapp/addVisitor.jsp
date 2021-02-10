@@ -86,6 +86,9 @@
  	}
  %>
 			<center>
+			<%=request.getSession(false).getAttribute("name") %>
+			<%=request.getSession(false).getAttribute("idType") %>
+			<%=request.getSession(false).getAttribute("usertype") %>			
 				<form action="addVisitor" method="post">
 					<div class="form-row">
 						<div class="form-group col-md-6">

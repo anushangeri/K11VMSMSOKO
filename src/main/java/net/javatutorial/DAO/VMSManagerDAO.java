@@ -204,14 +204,14 @@ public class VMSManagerDAO {
         ArrayList<Visitor> vList = new ArrayList<Visitor>();
         try {
         	connection = Main.getConnection();
-            String sql = "SELECT VMS_ID, NAME,\r\n" + 
+            String sql = "SELECT VMS_ID, NAME, \r\n" + 
             		"              COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, \r\n" + 
-            		"              VEHICLE_NO, HOST_NAME,\r\n" + 
+            		"              VEHICLE_NO, HOST_NAME, \r\n" + 
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              TIME_IN_DT, TIME_OUT_DT "
-            		+ "FROM VMS "
-            		+ "WHERE NAME = '" + name + "' AND ID_NO ='" + idNo + "' AND ID_TYPE = '" + idType + "' "
-    				+ "ORDER BY TIME_IN_DT DESC LIMIT 1; ";
+            		+ " FROM VMS "
+            		+ " WHERE NAME = '" + name + "' AND ID_NO ='" + idNo + "' AND ID_TYPE = '" + idType + "' "
+    				+ " ORDER BY TIME_IN_DT DESC";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();
