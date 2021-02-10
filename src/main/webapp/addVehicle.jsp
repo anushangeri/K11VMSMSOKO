@@ -120,7 +120,7 @@
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? userInput : v.getIdNo())%>"
-								maxlength="3" required>
+								minlength="4" maxlength="9" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="mobileNo">Mobile: </label> <input type="text"
