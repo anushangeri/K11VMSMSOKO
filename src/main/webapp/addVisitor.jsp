@@ -77,25 +77,24 @@
 				to use:</b> Please enter Visitor Details.
 			<%
  	String userInput = "SxxxxxxxJ";
+	String name = "";
  	Visitor v = null;
  	if (request.getAttribute("visitorLatRec") != null) {
  		v = (Visitor) request.getAttribute("visitorLatRec");
  	}
  	if (request.getSession(false).getAttribute("usertype") != null) {
  		userInput = (String) request.getSession(false).getAttribute("usertype");
+ 		name = (String) request.getSession(false).getAttribute("name");
  	}
  %>
 			<center>
-			<%=request.getSession(false).getAttribute("name") %>
-			<%=request.getSession(false).getAttribute("idType") %>
-			<%=request.getSession(false).getAttribute("usertype") %>			
 				<form action="addVisitor" method="post">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="name">Name: </label> <input type="text"
 								class="form-control" name="name"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getName())%>" required>
+								value="<%=((v == null) ? name : v.getName())%>" required>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="companyName">Company Name: </label> <input
