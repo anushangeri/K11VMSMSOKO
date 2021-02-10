@@ -88,6 +88,7 @@
  	}
  %>
 			<center>
+			<%=v.toString() %>
 				<form action="addVehicle" method="post">
 					<div class="form-row">
 						<div class="form-group col-md-6">

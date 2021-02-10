@@ -276,9 +276,9 @@ public class VehMSManagerDAO {
             String sql = "SELECT VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, \r\n" + 
             		"CONTAINER_NO, LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO, \r\n" + 
             		"VISIT_PURPOSE, TEMPERATURE, TIME_IN_DT, TIME_OUT_DT \r\n" + 
-            		"FROM VEHMS"
-            		+ "WHERE NAME = '" + name + "' AND ID_NO ='" + idNo + "' AND ID_TYPE = '" + idType + "' "
-    				+ "ORDER BY TIME_IN_DT DESC LIMIT 1; ";
+            		" FROM VEHMS"
+            		+ " WHERE NAME = '" + name + "' AND ID_NO ='" + idNo + "' AND ID_TYPE = '" + idType + "' "
+    				+ " ORDER BY TIME_IN_DT DESC";
             pstmt = connection.prepareStatement(sql);
 
             rs = pstmt.executeQuery();

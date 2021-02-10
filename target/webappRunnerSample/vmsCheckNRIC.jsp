@@ -34,13 +34,14 @@
 		var isDigitThird = (third >= '0' && third <= '9');
 		var forth = idNo.charAt(3);
 		var isDigitForth = (forth >= '0' && forth <= '9');
-		if (x != "K11ADMIN" && (idType == "NRIC" || idType == "FIN") &&
-				(!isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth))  {
-			alert("PDPA Compliance: Enter ONLY last 3 digit and letter of ID Number. E.g. 409J");
+		var n = idNo.length;
+		if (idNo != "K11ADMIN" && (idType == "NRIC" || idType == "FIN") && (!(n >= 4) ||
+				!isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth))  {
+			alert("PDPA Compliance: Enter ONLY last 3 digit and letter of ID Number. E.g. 409J ");
 			return false;
 		}
-		if (x != "K11ADMIN" && (idType == "PASSPORT NO.") &&
-				(!isDigitFirst || !isDigitSecond || !isDigitThird || !isDigitForth))  {
+		if (idNo != "K11ADMIN" && (idType == "PASSPORT NO.") && (!(n >= 4) ||
+				!isDigitFirst || !isDigitSecond || !isDigitThird || !isDigitForth))  {
 			alert("PDPA Compliance: Enter ONLY last 4 digit of Passport No. E.g. 4456");
 			return false;
 		}
@@ -102,7 +103,7 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="idNo">ID Number: </label> <input type="text"
-						class="form-control" name="idNo" id="idNo" placeholder="xxx"
+						class="form-control" name="idNo" id="idNo" placeholder="xxxx"
 						minlength="4" maxlength="9" required>
 				</div>
 				<input type="hidden" id="recordType" name="recordType" value=<%=request.getParameter("recordType")%>>
