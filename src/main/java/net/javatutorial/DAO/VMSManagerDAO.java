@@ -196,7 +196,7 @@ public class VMSManagerDAO {
         return vList;
     }
 	
-	public static ArrayList<Visitor> retrieveByNameIDandType(String name, String idType, String idNo) {
+	public static ArrayList<Visitor> retrieveByNameIDandType(String idType, String idNo) {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;

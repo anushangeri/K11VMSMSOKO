@@ -265,7 +265,7 @@ public class VehMSManagerDAO {
     }
 	
 	// to be used in populate	
-	public static ArrayList<Vehicle> retrieveByNameIDandType(String name, String idType, String idNo) {
+	public static ArrayList<Vehicle> retrieveByNameIDandType(String idType, String idNo) {
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
