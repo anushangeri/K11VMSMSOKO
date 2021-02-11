@@ -89,7 +89,7 @@
  %>
 			<center>
 				<form action="addVehicle" method="post">
-					<div class="form-row">
+					<div class="form-row"> 
 						<div class="form-group col-md-6">
 							<label for="name">Name: </label> <input type="text"
 								class="form-control" name="name"

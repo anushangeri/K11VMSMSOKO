@@ -210,7 +210,7 @@ public class VMSManagerDAO {
             		"              HOST_CONTACT, VISTOR_CARD_ID, COVID_DECLARE, VISIT_PURPOSE, TEMPERATURE, \r\n" + 
             		"              TIME_IN_DT, TIME_OUT_DT "
             		+ " FROM VMS "
-            		+ " WHERE NAME = '" + name + "' AND ID_NO ='" + idNo + "' AND ID_TYPE = '" + idType + "' "
+            		+ " WHERE ID_NO ='" + idNo + "' AND ID_TYPE = '" + idType + "' "
     				+ " ORDER BY TIME_IN_DT DESC";
             pstmt = connection.prepareStatement(sql);
 
