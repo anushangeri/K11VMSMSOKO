@@ -31,7 +31,7 @@ public class VehMSManagerDAO {
 	        		+v.getLoadedNoLoaded()+ "','" +v.getCovidDeclare()+ "','" +v.getLorryChetNumber()+ "','" 
 	        		+v.getDeliveryNoticeNumber()+ "','" +v.getVisitPurpose()+ "','" 
 	        		+v.getTemperature()+ "','" +v.getSealNo()+ "','" +v.getContainerSize()+ "','" +v.getTimeInDt()+ "');");
-	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM VEHMS;");
+	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE NAME = " + "'" +v.getName()+ "';");
 	        while (rs.next()) {
 	        	message = "Read from DB: " + rs.getTimestamp("tick");
 	        }
