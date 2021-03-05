@@ -35,10 +35,11 @@
 	<%
 		ArrayList<String> visitPurpose = new ArrayList<String>();
 		ArrayList<String> idType = new ArrayList<String>();
+		ArrayList<String> containerSize = new ArrayList<String>();
 		SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
 		try {
 			//Dropdown for visitPurpose START
-			String visitPurposeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/13/public/values";
+			String visitPurposeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/14/public/values";
 			// Use this String as url
 			URL visitPurposeurl = new URL(visitPurposeUrl);
 
@@ -64,6 +65,20 @@
 				idType.add(cec.getValue("idtype").trim());
 			}
 			//Dropdown for idType END
+			
+			//Dropdown for containerSize START
+			String containerSizeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/15/public/values";
+			// Use this String as url
+			URL containerSizeurl = new URL(containerSizeUrl);
+
+			// Get Feed of Spreadsheet url
+			ListFeed containerSizelf = service.getFeed(containerSizeurl, ListFeed.class);
+
+			for (ListEntry le : containerSizelf.getEntries()) {
+				CustomElementCollection cec = le.getCustomElements();
+				containerSize.add(cec.getValue("size").trim());
+			}
+			//Dropdown for containerSize END
 
 		} catch (Exception e) {
 	%>
@@ -73,7 +88,7 @@
 	%>
 	<div class="container body-content">
 		<div class="page-header">
-			<label class="heading">Visitor Management System</label> <br> <b>How
+			<label class="heading">Vehicle Management System</label> <br> <b>How
 				to use:</b> Please enter Visitor Details.
 			<%
  	String userInput = "SxxxxxxxJ";
@@ -88,11 +103,10 @@
  	}
  %>
 			<center>
-			<%=v.toString() %>
 				<form action="addVehicle" method="post">
-					<div class="form-row">
+					<div class="form-row"> 
 						<div class="form-group col-md-6">
-							<label for="name">Name: </label> <input type="text"
+							<label for="name">Vehicle Driver Name: </label> <input type="text"
 								class="form-control" name="name"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? name : v.getName())%>" required>
@@ -101,48 +115,65 @@
 							<label for="companyName">Company Name: </label> <input
 								type="text" class="form-control" name="companyName"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
+								value="<%=((v == null) ? " " : v.getCompanyName())%>" required>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="idType">ID Type: </label> <select name="idType"
-								class="form-control" required>
-								<%
-									for (int i = 0; i < idType.size(); i++) {
-								%>
-								<option value="<%=idType.get(i)%>">
-									<%=idType.get(i)%></option>
-								<%
-									}
-								%>
-							</select>
+							<label for="idType">ID Type: </label> 
+							<% if(v == null){%>
+								<select name="idType" class="form-control" required>
+									<%
+										for (int i = 0; i < idType.size(); i++) {
+									%>
+									<option value="<%=idType.get(i)%>">
+										<%=idType.get(i)%></option>
+									<%
+										}
+									%>
+								</select>
+							<% } 
+							else {%>
+								<input
+								type="text" class="form-control" name="idType"
+								oninput="this.value = this.value.toUpperCase()"
+								value="<%=((v == null) ? " " : v.getIdType())%>" readonly>
+							<%} %>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="idNo">ID Number: </label> <input type="text"
+							<label for="idNo">Vehicle Driver ID Number: </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? userInput : v.getIdNo())%>"
-								minlength="4" maxlength="9" required>
+								minlength="4" maxlength="9" readonly>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="mobileNo">Mobile: </label> <input type="text"
 								class="form-control" name="mobileNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
+								value="<%=((v == null) ? " " : v.getMobileNo())%>" required>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="visitPurpose">Visit Purpose: </label> <select
-								name="visitPurpose" class="form-control" required>
-								<%
-									for (int i = 0; i < visitPurpose.size(); i++) {
-								%>
-								<option value="<%=visitPurpose.get(i)%>">
-									<%=visitPurpose.get(i)%></option>
-								<%
-									}
-								%>
-							</select>
+							<label for="visitPurpose">Visit Purpose: </label> 
+							<% if(v == null){%>
+								<select
+									name="visitPurpose" class="form-control" required>
+									<%
+										for (int i = 0; i < visitPurpose.size(); i++) {
+									%>
+									<option value="<%=visitPurpose.get(i)%>">
+										<%=visitPurpose.get(i)%></option>
+									<%
+										}
+									%>
+								</select>
+							<% } 
+							else {%>
+								<input
+								type="text" class="form-control" name="visitPurpose"
+								oninput="this.value = this.value.toUpperCase()"
+								value="<%=((v == null) ? " " : v.getVisitPurpose())%>" required>
+							<%} %>
 						</div>
 					</div>
 					<div class="form-row">
@@ -150,13 +181,13 @@
 							<label for="primeMoverNo">Vehicle/Primemover Number: </label> <input
 								type="text" class="form-control" name="primeMoverNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getPrimeMoverNo())%>">
+								value="<%=((v == null) ? " " : v.getPrimeMoverNo())%>">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="containerNo">Container Number: </label> <input type="text"
 								class="form-control" name="containerNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getContainerNo())%>">
+								value="<%=((v == null) ? " " : v.getContainerNo())%>">
 						</div>
 						<div class="form-group col-md-4">
 							<input type="checkbox" id="loadedNoLoaded"
@@ -167,16 +198,46 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
+							<label for="sealNo">Seal No: </label> <input type="text"
+								class="form-control" name="sealNo"
+								oninput="this.value = this.value.toUpperCase()"
+								value="<%=((v == null) ? " " : v.getSealNo())%>">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="containerSize">Container Size: </label> 
+							<% if (v.getContainerSize() == null || StringUtils.isEmpty(v.getContainerSize())){%>
+								<select
+									name="containerSize" class="form-control">
+									<%
+										for (int i = 0; i < containerSize.size(); i++) {
+									%>
+									<option value="<%=containerSize.get(i)%>">
+										<%=containerSize.get(i)%></option>
+									<%
+										}
+									%>
+								</select>
+							<% } 
+							else {%>
+								<input
+								type="text" class="form-control" name="containerSize"
+								oninput="this.value = this.value.toUpperCase()"
+								value="<%=((v == null) ? " " : v.getContainerSize())%>">
+							<%} %>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
 							<label for="lorryChetNumber">Lorry Chet Number: </label> <input
 								type="text" class="form-control" name="lorryChetNumber"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getLorryChetNumber())%>">
+								value="<%=((v == null) ? " " : v.getLorryChetNumber())%>">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="deliveryNoticeNumber">Delivery Notice Number: </label> <input type="text"
 								class="form-control" name="deliveryNoticeNumber"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getDeliveryNoticeNumber())%>">
+								value="<%=((v == null) ? " " : v.getDeliveryNoticeNumber())%>">
 						</div>
 					</div>
 					<div class="form-row">

@@ -84,7 +84,7 @@
 			onsubmit="return validateForm()">
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="name">Visitor Name: </label> <input type="text"
+					<label for="name">Visitor or Vehicle Driver Name: </label> <input type="text"
 						class="form-control" name="name"
 						oninput="this.value = this.value.toUpperCase()" required>
 				</div>
@@ -103,7 +103,7 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="idNo">ID Number: </label> <input type="text"
-						class="form-control" name="idNo" id="idNo" placeholder="xxxx"
+						class="form-control" name="idNo" id="idNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
 						minlength="4" maxlength="9" required>
 				</div>
 				<input type="hidden" id="recordType" name="recordType" value=<%=request.getParameter("recordType")%>>

@@ -29,26 +29,39 @@
 	%>
 	<center>
 		<b>*Individuals are required to self-identify should they
-			experience any COVID-19 symptoms.</b>
-		<br>
-		<br>
+			experience any COVID-19 symptoms.</b> <br> <br>
 		<div class="container">
-			<div class="card bg-dark text-white">
-				<div class="card-body font-size-percent">
-					<form method="POST" action ="vmsCheckNRIC.jsp">
-						<input type="hidden" id="recordType" name="recordType" value="visitorRecord">
-						<input id="removeBackground" type="submit" name="Submit" value="Are you a visitor? Select this."></form>
-				</div>
-			</div>
+			<form method="POST" action="vmsCheckNRIC.jsp">
+				<input type="hidden" id="recordType" name="recordType"
+					value="visitorRecord">
+				<button type="submit" id="removeBackground">
+					<div class="card bg-dark text-white">
+						<div class="card-body font-size-percent">
+							Are you one of the following? <br> 
+							• visitor <br> 
+							• staff <br> 
+							• government agency <br> 
+							Select this.
+
+						</div>
+					</div>
+				</button>
+			</form>
 			<br>
-			<div class="card bg-warning text-white">
-				<div class="card-body font-size-percent">
-					<form method="POST" action ="vmsCheckNRIC.jsp">
-						<input type="hidden" id="recordType" name="recordType" value="vehicleRecord">
-						<input id="removeBackground" type="submit" name="Submit" 
-						value="Are you a commercial vehicle / container? Select this."></form>
-				</div>
-			</div>
+			<form method="POST" action="vmsCheckNRIC.jsp">
+				<input type="hidden" id="recordType" name="recordType"
+					value="vehicleRecord">
+				<button type="submit" id="removeBackground">
+					<div class="card bg-warning text-white">
+						<div class="card-body font-size-percent">
+							Are you one of the following? <br> 
+							• commercial vehicle <br>
+							• container <br> 
+							Select this.
+						</div>
+					</div>
+				</button>
+			</form>
 			<br>
 		</div>
 	</center>
