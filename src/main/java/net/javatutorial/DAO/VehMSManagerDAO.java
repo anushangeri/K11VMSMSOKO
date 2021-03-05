@@ -23,15 +23,15 @@ public class VehMSManagerDAO {
 			stmt = connection.createStatement();
 
 	        stmt.executeUpdate("INSERT INTO VEHMS "
-	        		+  "(VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, CONTAINER_NO, "
-	        		+ "LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO,"
+	        		+ "(VEHICLE_ID, NAME, COMPANY_NAME, ID_TYPE, ID_NO, MOBILE_NO, PRIME_MOVER_NO, CONTAINER_NO, "
+	        		+ " LOADED_FLAG, COVID_DECLARE_FLAG, LORRY_CHET_NO, DELIVERY_NOTICE_NO,"
 	        		+ " VISIT_PURPOSE, TEMPERATURE, SEAL_NO, CONTAINER_SIZE, TIME_IN_DT)" + 
 	        		"  VALUES ('" +v.getVehicleId()+ "','" +v.getName()+ "','" +v.getCompanyName()+ "','" +v.getIdType()+ "','" 
 	        		+v.getIdNo()+ "','" +v.getMobileNo()+ "','" +v.getPrimeMoverNo()+ "','" +v.getContainerNo()+ "','" 
 	        		+v.getLoadedNoLoaded()+ "','" +v.getCovidDeclare()+ "','" +v.getLorryChetNumber()+ "','" 
 	        		+v.getDeliveryNoticeNumber()+ "','" +v.getVisitPurpose()+ "','" 
 	        		+v.getTemperature()+ "','" +v.getSealNo()+ "','" +v.getContainerSize()+ "','" +v.getTimeInDt()+ "');");
-	        rs = stmt.executeQuery("SELECT NAME FROM VEHMS WHERE NAME = " + "'" +v.getName()+ "';");
+	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM VEHMS;");
 	        while (rs.next()) {
 	        	message = "Read from DB: " + rs.getTimestamp("tick");
 	        }
@@ -47,7 +47,7 @@ public class VehMSManagerDAO {
 		finally {
         	Main.close(connection, stmt, rs);
         }
-		message = "Successful";
+		message = "successfull" ;
 		return message;
 	}
 	

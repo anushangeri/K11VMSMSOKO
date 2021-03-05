@@ -46,7 +46,7 @@ public class AddVehicleRecordServlet extends HttpServlet {
 		Vehicle v = new Vehicle( vehicleId,  name,  companyName, idType, idNo,  mobileNo,  primeMoverNo,
 				containerNo,  loadedNoLoaded, covidDec, lorryChetNumber, deliveryNoticeNumber,  
 				visitPurpose, temperature, sealNo, containerSize,  timestamp);
-		
+
 		String message = VehMSManagerDAO.addVisitor(v);
 		
 		ArrayList<String> responseObj = new ArrayList<String>();
