@@ -214,7 +214,7 @@
 									<option value="<%=containerSize.get(i)%>">
 										<%=containerSize.get(i)%></option>
 									<%
-										}
+										} 
 									%>
 								</select>
 							<% } 
