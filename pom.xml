@@ -171,22 +171,22 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<build>
-		<sourceDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\java</sourceDirectory>
-		<scriptSourceDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\scripts</scriptSourceDirectory>
-		<testSourceDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\test\java</testSourceDirectory>
-		<outputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\target\classes</outputDirectory>
-		<testOutputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\target\test-classes</testOutputDirectory>
+		<sourceDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java</sourceDirectory>
+		<scriptSourceDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\scripts</scriptSourceDirectory>
+		<testSourceDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\test\java</testSourceDirectory>
+		<outputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\target\classes</outputDirectory>
+		<testOutputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\target\test-classes</testOutputDirectory>
 		<resources>
 			<resource>
-				<directory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\main\resources</directory>
+				<directory>E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\resources</directory>
 			</resource>
 		</resources>
 		<testResources>
 			<testResource>
-				<directory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\src\test\resources</directory>
+				<directory>E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\test\resources</directory>
 			</testResource>
 		</testResources>
-		<directory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\target</directory>
+		<directory>E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\target</directory>
 		<finalName>webappRunnerSample</finalName>
 		<pluginManagement>
 			<plugins>
@@ -352,7 +352,7 @@
 							<goal>site</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\target\site</outputDirectory>
+							<outputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\target\site</outputDirectory>
 							<reportPlugins>
 								<reportPlugin>
 									<groupId>org.apache.maven.plugins</groupId>
@@ -368,7 +368,7 @@
 							<goal>deploy</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\target\site</outputDirectory>
+							<outputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\target\site</outputDirectory>
 							<reportPlugins>
 								<reportPlugin>
 									<groupId>org.apache.maven.plugins</groupId>
@@ -379,7 +379,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<outputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\target\site</outputDirectory>
+					<outputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\target\site</outputDirectory>
 					<reportPlugins>
 						<reportPlugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -391,6 +391,6 @@
 		</plugins>
 	</build>
 	<reporting>
-		<outputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\k11DeployedVMS\target\site</outputDirectory>
+		<outputDirectory>E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\target\site</outputDirectory>
 	</reporting>
 </project>
