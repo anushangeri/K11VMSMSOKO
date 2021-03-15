@@ -55,24 +55,11 @@
 			});
 		});
 	});
-	$(function () {
-        $("#ddlLorryChet").change(function () {
-            if ($(this).val() == "Y") {
-                $("#dvLorryChet").show();
-            } else {
-                $("#dvLorryChet").hide();
-            }
-        });
-    });
-	$(function () {
-        $("#ddlDelNotice").change(function () {
-            if ($(this).val() == "Y") {
-                $("#dvDelNotice").show();
-            } else {
-                $("#dvDelNotice").hide();
-            }
-        });
-    });
+	function showDiv(divId, element)
+	{
+	    document.getElementById(divId).style.display = element.value == "Y" ? 'block' : 'none';
+	}
+	
 </script>
 </head>
 <body>
@@ -142,12 +129,12 @@
 										else{
 									%>
 										<td>
-											<select id = "ddlLorryChet" onchange = "ShowHideDiv()">
+											<select id = "ddlLorryChet" onchange="showDiv('dvLorryChet<%=v.getVehicleId()%>', this)">
 										        <option value="N">No</option>
 										        <option value="Y">Yes</option>            
 										    </select>
 										    <hr />
-											<div id="dvLorryChet" style="display: none">
+											<div id="dvLorryChet<%=v.getVehicleId()%>" style="display: none">
 												<form method="POST" action ="/updateVehLorryChet">
 													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="lorryChetNumber"
@@ -166,12 +153,12 @@
 										else{
 									%>
 										<td>
-											<select id = "ddlDelNotice" onchange = "ShowHideDiv()">
+											<select id = "ddlDelNotice" onchange="showDiv('dvDelNotice<%=v.getVehicleId()%>', this)">
 										        <option value="N">No</option>
 										        <option value="Y">Yes</option>            
 										    </select>
 										    <hr />
-											<div id="dvDelNotice" style="display: none">
+											<div id="dvDelNotice<%=v.getVehicleId()%>" style="display: none">
 												<form method="POST" action ="/updateVehDeliveryNotice">
 													<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
 													<input type="text" class="form-control" name="deliveryNoticeNumber"
