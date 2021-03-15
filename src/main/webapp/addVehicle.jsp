@@ -169,10 +169,17 @@
 								</select>
 							<% } 
 							else {%>
-								<input
-								type="text" class="form-control" name="visitPurpose"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getVisitPurpose())%>" required>
+								<select
+									name="visitPurpose" class="form-control" required>
+									<%
+										for (int i = 0; i < visitPurpose.size(); i++) {
+									%>
+									<option value="<%=visitPurpose.get(i)%>" <%=v.getVisitPurpose().equals(visitPurpose.get(i)) ? "selected" : "" %>>
+										<%=visitPurpose.get(i)%></option>
+									<%
+										}
+									%>
+								</select>
 							<%} %>
 						</div>
 					</div>
@@ -211,7 +218,7 @@
 									<%
 										for (int i = 0; i < containerSize.size(); i++) {
 									%>
-									<option value="<%=containerSize.get(i)%>">
+									<option value="<%=containerSize.get(i)%>" >
 										<%=containerSize.get(i)%></option>
 									<%
 										}
@@ -219,10 +226,17 @@
 								</select>
 							<% } 
 							else {%>
-								<input
-								type="text" class="form-control" name="containerSize"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getContainerSize())%>">
+								<select
+									name="containerSize" class="form-control">
+									<%
+										for (int i = 0; i < containerSize.size(); i++) {
+									%>
+									<option value="<%=containerSize.get(i)%>" <%=v.getContainerSize().equals(containerSize.get(i)) ? "selected" : "" %>>
+										<%=containerSize.get(i)%></option>
+									<%
+										}
+									%>
+								</select>
 							<%} %>
 						</div>
 					</div>
