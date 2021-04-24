@@ -20,7 +20,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.js" type="text/javascript"></script>
 <script src="https://drvic10k.github.io/bootstrap-sortable/Scripts/bootstrap-sortable.js" type="text/javascript"></script>
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.dataTables.min.css" />
 <script src="https://code.jquery.com/jquery-1.12.3.js" type="text/javascript"></script>
@@ -28,10 +28,13 @@
 <script src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.10.24/sorting/datetime-moment.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$(document).ready(function() {
+			$.fn.dataTable.moment('DD/MM/YYYY hh:mm:ss A');
 			$('table').DataTable({
+				"order": [[ 0, "desc" ]],
 				dom : 'Blfrtip',
 				buttons : [ {
 					text : 'Export To Excel',
@@ -51,10 +54,14 @@
 					customize : function(xlsx) {
 						var sheet = xlsx.xl.worksheets['sheet1.xml'];
 					}
-				} ]
+				} ],
+				"order": [[13, 'desc']]
 			});
 		});
 	});
+	function goBack() {
+	  window.history.back();
+	}
 </script>
 </head>
 <body>
@@ -63,7 +70,12 @@
 		ArrayList<Visitor> vList = (ArrayList<Visitor>) request.getAttribute("vList");
 		String message = (String) request.getAttribute("message");
 		final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
-		
+		String idNo = "SxxxxxxxJ";
+		String userType = "";
+	 	if (request.getSession(false).getAttribute("idNo") != null) {
+	 		idNo = (String) request.getSession(false).getAttribute("idNo");
+	 		userType = (String) request.getSession(false).getAttribute("usertype");
+	 	}
 		if (message != null && !StringUtils.isEmpty(message)) {
 	%>
 		<label class="heading"><%=message%> </label><br>
@@ -81,7 +93,14 @@
 							<th class="th-sm">Name</th>
 							<th class="th-sm">Company Name</th>
 							<th class="th-sm" style="display:none;">ID Type</th>
-							<th class="th-sm" style="display:none;">ID Number</th>
+							<%if(userType == null) { %>
+								<th class="th-sm" style="display:none;">ID Number</th>
+							<% 
+							} else{
+							%>
+								 <th class="th-sm">ID Number</th>
+							<%
+							}%>
 							<th class="th-sm">Visitor Contact Number</th>
 							<th class="th-sm">Vehicle Number</th>
 							<th class="th-sm">Host Name</th>
@@ -106,7 +125,16 @@
 									<td><%=v.getName()%></td>
 									<td><%=v.getCompanyName()%></td>
 									<td style="display:none;"><%=v.getIdType()%></td>
-									<td style="display:none;"><%=v.getIdNo()%></td>
+									<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
+									<%if(userType == null) { %>
+										<td style="display:none;"><%=v.getIdNo()%></td>
+									<% 
+									} else{
+									%>
+										 <td><a href="/retrieveToPopulate?idNo=<%=v.getIdNo()%>&idType=<%=v.getIdType()%>"><%=v.getIdNo()%></a></td>
+									<%
+									}%>
+									
 									<td><%=v.getMobileNo()%></td>
 									<td><%=v.getVehicleNo()%></td>
 									<td><%=v.getHostName()%></td>
@@ -148,16 +176,16 @@
 	</div>
 		<div class="container body-content">
 			<center>
-				<a href="index.jsp" class="btn btn-warning btn-lg active"
-					role="button" aria-pressed="true">Back</a>
-		
+				<a href="/index.jsp" class="btn btn-warning btn-lg active"
+				role="button" aria-pressed="true">Back</a>
+				
 				<a href="retrieveToPopulate" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">Add Visitor Record</a>
 				
 				<!-- Delete all record function is for K11 Admin only -->
 				<%if (request.getSession(false).getAttribute("usertype") != null) {
-					String userInput = (String) request.getSession(false).getAttribute("usertype");
-					if (userInput.toUpperCase().equals("K11ADMIN")){ %>
+					String usertype = (String) request.getSession(false).getAttribute("usertype");
+					if (usertype.toUpperCase().equals("ADMIN")){ %>
 						<a href="deleteAllVisitor" class="btn btn-warning btn-lg active"
 						role="button" aria-pressed="true">Delete Visitor Record</a>
 						
