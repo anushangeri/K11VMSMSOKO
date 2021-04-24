@@ -24,25 +24,15 @@
 	rel="stylesheet">
 </head>
 <body>
-	<%
-		session.removeAttribute("usertype");
-		session.removeAttribute("name");
-		session.removeAttribute("idNo");
-	%>
 	<center>
 		<b>*Individuals are required to self-identify should they
 			experience any COVID-19 symptoms.</b> <br> <br>
 		<div class="container">
-			<form method="POST" action="vmsCheckNRIC.jsp">
-				<input type="hidden" id="recordType" name="recordType"
-					value="visitorRecord">
+			<form action="vms" method="get" >
 				<button type="submit" id="removeBackground">
 					<div class="card bg-dark text-white">
 						<div class="card-body font-size-percent">
-							Are you one of the following? <br> 
-							• visitor <br> 
-							• staff <br> 
-							• government agency <br> 
+							View Visitor Records<br> 
 							Select this.
 
 						</div>
@@ -50,15 +40,11 @@
 				</button>
 			</form>
 			<br>
-			<form method="POST" action="vmsCheckNRIC.jsp">
-				<input type="hidden" id="recordType" name="recordType"
-					value="vehicleRecord">
+			<form action="vehms" method="get" >
 				<button type="submit" id="removeBackground">
 					<div class="card bg-warning text-white">
 						<div class="card-body font-size-percent">
-							Are you one of the following? <br> 
-							• commercial vehicle <br>
-							• container <br> 
+							View Vehicle Records<br>
 							Select this.
 						</div>
 					</div>
@@ -67,5 +53,29 @@
 			<br>
 		</div>
 	</center>
+	<div class="container body-content">
+		<center>
+			<a href="clientLogin.jsp" class="btn btn-warning btn-lg active"
+				role="button" aria-pressed="true">Back</a>
+		</center>
+	</div>
+	<div class="container body-content">
+		<center>
+			<!-- Create client account is for K11 Admin only -->
+			<%if (request.getSession(false).getAttribute("usertype") != null) {
+				String userInput = (String) request.getSession(false).getAttribute("usertype");
+				if (userInput.toUpperCase().equals("ADMIN")){ %>
+					<a href="addClientAccount.jsp" class="btn btn-warning btn-lg active"
+					role="button" aria-pressed="true">Create Client Record</a>
+					<a href="/retrieveAllClientRecords" class="btn btn-warning btn-lg active"
+					role="button" aria-pressed="true">Manage Client Records</a>
+				<%	
+				}
+			%>
+			<% 
+			}
+			%>
+		</center>
+	</div>
 </body>
 </html>

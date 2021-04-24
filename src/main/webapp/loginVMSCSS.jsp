@@ -18,13 +18,12 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="all">
 <link rel="stylesheet" href="css/styles.css" media="all">
-<link
-	href=' http://fonts.googleapis.com/css?family=Inconsolata|Droid+Sans'
-	rel='stylesheet' type='text/css'>
+
 <style type="text/css">
 .navbar-default {
 	background-color: #9b59b6;
 	border-color: #8e44ad;
+	position: relative !important;
 }
 
 .navbar-default .navbar-brand {
@@ -86,10 +85,11 @@
 	color: #ecdbff;
 }
 
-.list{
+.list {
 	background-color: #FFA8A4 !important;
 }
-#tableview{
+
+#tableview {
 	width: 80% !important;
 	margin-left: 2% !important;
 }
@@ -98,12 +98,19 @@ body {
 	background-color: #F3F3F3;
 }
 </style>
-<nav class="navbar list" role="navigation">
-	<div class="container-fluid">
-	<!-- add links in nav bar if request by client -->
+
+<div class="navbar navbar-inverse navbar-static-top">
+	<div class="dropdown">
+		<button class="btn btn-secondary dropdown-toggle" type="button"
+			id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+			aria-expanded="false">Client Options</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<a class="dropdown-item" href="/clientLogin.jsp">Login</a> 
+			<a class="dropdown-item" href="/resetPassword.jsp">Reset Password</a> 
+		</div>
 	</div>
-	<!-- /.container-fluid -->
-</nav>
+</div>
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
@@ -113,9 +120,13 @@ body {
 <title>K11 VMS</title>
 </head>
 <body>
-	<h1 id="k11title">VMS MSOKO</h1>
-	<center><b>by K11 SECURITY ENGINEERING</b></center>
-	<br>
+	<div class="container">
+		<h1 id="k11title">VMS MSOKO</h1>
+		<center>
+			<b>by K11 SECURITY ENGINEERING</b>
+		</center>
+
+	</div>
 </body>
 
 

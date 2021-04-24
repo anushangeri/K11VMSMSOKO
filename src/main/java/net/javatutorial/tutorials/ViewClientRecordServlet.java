@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
-import net.javatutorial.DAO.VMSManagerDAO;
-import net.javatutorial.entity.Visitor;
+import net.javatutorial.DAO.ClientAccountManagerDAO;
+import net.javatutorial.entity.ClientAccount;
 
 /**
- * Servlet implementation class ViewVisitorRecordServlet - to view visitor records
+ * Servlet implementation class ViewVehicleRecordServlet
  */
-public class ViewVisitorRecordServlet extends HttpServlet {
+public class ViewClientRecordServlet extends HttpServlet {
 	private static final long serialVersionUID = -4751096228274971485L;
 
 	@Override
@@ -25,29 +25,16 @@ public class ViewVisitorRecordServlet extends HttpServlet {
 		String usertype = (String) request.getSession(false).getAttribute("usertype");
 		String idNo = (String) request.getSession(false).getAttribute("idNo");
 		String name = (String) request.getSession(false).getAttribute("name");
-		String message = "No visitor records available for: " + name;
-		ArrayList<Visitor> vList = null;
-		if(!StringUtils.isEmpty(idNo)) {
-			if(usertype != null) {
-				vList = VMSManagerDAO.retrieveAll();
-				message = "List of visitor records";
-				request.setAttribute("vList", vList);
-				if(vList == null && vList.size() == 0) {
-					message = "No visitor records available";
-				}
-			}
-			else{
-				vList = VMSManagerDAO.retrieveByNRIC(idNo);
-				message = "List of visitor records for " + name;
-				request.setAttribute("vList", vList);
-				if(vList == null && vList.size() == 0) {
-					message = "No visitor records available for " + name;
-				}
-			}
+		String message = "No client accounts available";
+		ArrayList<ClientAccount> vList = null;
+		if(usertype != null && usertype.toUpperCase().equals("ADMIN")) {
+			vList = ClientAccountManagerDAO.retrieveAll();
+			message = "List of client accounts";
+			request.setAttribute("vList", vList);
 		}
 		
 		request.setAttribute("message", message);
-        RequestDispatcher rd = request.getRequestDispatcher("vms.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("clientManager.jsp");
         rd.forward(request, response);
 	}
 	@Override

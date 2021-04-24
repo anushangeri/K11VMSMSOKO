@@ -25,7 +25,6 @@
 <script>
 	function validateForm() {
 		var idNo = document.forms["checkNRIC"]["idNo"].value;
-		var idType = document.forms["checkNRIC"]["idType"].value;
 		var first = idNo.charAt(0);
 		var isDigitFirst = (first >= '0' && first <= '9');
 		var second = idNo.charAt(1);
@@ -35,79 +34,63 @@
 		var forth = idNo.charAt(3);
 		var isDigitForth = (forth >= '0' && forth <= '9');
 		var n = idNo.length;
-		if (idNo != "K11ADMIN" && (idType == "NRIC" || idType == "FIN") && (!(n >= 4) ||
+		if (idNo != "K11ADMIN" && (!(n >= 4) ||
 				!isDigitFirst || !isDigitSecond || !isDigitThird || isDigitForth))  {
 			alert("PDPA Compliance: Enter ONLY last 3 digit and letter of ID Number. E.g. 409J ");
 			return false;
 		}
-		if (idNo != "K11ADMIN" && (idType == "PASSPORT NO.") && (!(n >= 4) ||
+		if (idNo != "K11ADMIN" && (!(n >= 4) ||
 				!isDigitFirst || !isDigitSecond || !isDigitThird || !isDigitForth))  {
 			alert("PDPA Compliance: Enter ONLY last 4 digit of Passport No. E.g. 4456");
 			return false;
 		}
 	}
+	function showPassword() {
+		  var x = document.getElementById("psw");
+		  if (x.type === "password") {
+		    x.type = "text";
+		  } else {
+		    x.type = "password";
+		  }
+	}
 </script>
 </head>
 <body>
 	<%
-		ArrayList<String> idType = new ArrayList<String>();
-		SpreadsheetService service = new SpreadsheetService("K11CLICKS: DROPDOWN EXCEL");
-		try {
-			//Dropdown for idType START
-			String idTypeUrl = "https://spreadsheets.google.com/feeds/list/116L_MDacE0331uQDZLRQD4UKpKXfHgWKcMFeD0ne324/3/public/values";
-			// Use this String as url
-			URL idTypeurl = new URL(idTypeUrl);
-
-			// Get Feed of Spreadsheet url
-			ListFeed idTypelf = service.getFeed(idTypeurl, ListFeed.class);
-
-			for (ListEntry le : idTypelf.getEntries()) {
-				CustomElementCollection cec = le.getCustomElements();
-				idType.add(cec.getValue("idtype").trim());
-			}
-			//Dropdown for idType END
-
-		} catch (Exception e) {
-	%>
-			<h1><%=e%></h1>
-	<%
-		}
 		session.removeAttribute("usertype");
 		session.removeAttribute("name");
-		session.removeAttribute("idType");
+		session.removeAttribute("idNo");
+		
+		String responseObj = (String) request.getAttribute("responseObj");
+		if (responseObj != null && !StringUtils.isEmpty(responseObj)) {
 	%>
+			<label class="heading"><%=responseObj%> </label><br>
+		<%} %>
 	<center>
 		<b>*Individuals are required to self-identify should they
 			experience any COVID-19 symptoms.</b>
-
-		<form name="checkNRIC" action="vmsCheckNRIC" method="post"
+		<form name="verifyLogin" action="verifyLogin" method="post"
 			onsubmit="return validateForm()">
 			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="name">Visitor or Vehicle Driver Name: </label> <input type="text"
-						class="form-control" name="name"
-						oninput="this.value = this.value.toUpperCase()" required>
-				</div>
-				<div class="form-group col-md-4">
-					<label for="idType">ID Type: </label> <select name="idType"
-						class="form-control" required>
-						<%
-						for (int i = 0; i < idType.size(); i++) {
-						%>
-						<option value="<%=idType.get(i)%>">
-							<%=idType.get(i)%></option>
-						<%
-						}
-						%>
-					</select>
-				</div>
 				<div class="form-group col-md-6">
 					<label for="idNo">ID Number: </label> <input type="text"
 						class="form-control" name="idNo" id="idNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
 						minlength="4" maxlength="9" required>
 				</div>
-				<input type="hidden" id="recordType" name="recordType" value=<%=request.getParameter("recordType")%>>
-				<button type="submit" class="btn btn-primary">Check NRIC</button>
+				<div class="form-group col-md-4">
+					<label for="psw">Password</label> <input type="password" class="form-control" id="psw"
+						name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+						title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+						required><input type="checkbox" onclick="showPassword()">Show Password
+				</div>
+			</div>
+			<br>
+			<div class="form-row">
+				<button type="submit" class="btn btn-primary btn-lg active">
+				Login</button>
+					
+				<a href="/index.jsp" class="btn btn-warning btn-lg active" role="button"
+					aria-pressed="true">Back</a>
 			</div>
 		</form>
 	</center>
