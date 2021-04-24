@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="loginVMSCSS.jsp"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page import="org.apache.commons.collections.IteratorUtils"%>
 <%@page import="com.google.gdata.data.spreadsheet.CellEntry"%>
@@ -5,8 +7,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="net.javatutorial.entity.*"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="loginVMSCSS.jsp"%>
 <%@page import="java.util.*"%>
 <%@page import="java.time.*"%>
 <%@page import="java.io.IOException"%>
@@ -76,14 +76,14 @@
 			<label class="heading">Visitor Management System</label> <br> <b>How
 				to use:</b> Please enter Visitor Details.
 			<%
- 	String userInput = "SxxxxxxxJ";
+ 	String idNo = "SxxxxxxxJ";
 	String name = "";
  	Visitor v = null;
  	if (request.getAttribute("visitorLatRec") != null) {
  		v = (Visitor) request.getAttribute("visitorLatRec");
  	}
- 	if (request.getSession(false).getAttribute("usertype") != null) {
- 		userInput = (String) request.getSession(false).getAttribute("usertype");
+ 	if (request.getSession(false).getAttribute("usertype") == null && request.getSession(false).getAttribute("idNo") != null) {
+ 		idNo = (String) request.getSession(false).getAttribute("idNo");
  		name = (String) request.getSession(false).getAttribute("name");
  	}
  %>
@@ -129,7 +129,7 @@
 							<label for="idNo">ID Number: </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? userInput : v.getIdNo())%>"
+								value="<%=((v == null) ? idNo : v.getIdNo())%>"
 								minlength="4" maxlength="9" readonly>
 						</div>
 						<div class="form-group col-md-6">
@@ -154,10 +154,17 @@
 								</select>
 							<% } 
 							else {%>
-								<input
-								type="text" class="form-control" name="visitPurpose"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getVisitPurpose())%>" required>
+								<select
+									name="visitPurpose" class="form-control" required>
+									<%
+										for (int i = 0; i < visitPurpose.size(); i++) {
+									%>
+									<option value="<%=visitPurpose.get(i)%>" <%=v.getVisitPurpose().equals(visitPurpose.get(i)) ? "selected" : "" %>>
+										<%=visitPurpose.get(i)%></option>
+									<%
+										}
+									%>
+								</select>
 							<%} %>
 						</div>
 					</div>
