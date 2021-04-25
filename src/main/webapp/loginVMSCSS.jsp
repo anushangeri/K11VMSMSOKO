@@ -121,7 +121,7 @@ body {
 </head>
 <body>
 	<div class="container">
-		<h1 id="k11title">VMS DEMO</h1>
+		<h1 id="k11title">VMS MSOKO</h1>
 		<center>
 			<b>by K11 SECURITY ENGINEERING</b>
 		</center>
