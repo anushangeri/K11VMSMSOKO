@@ -31,6 +31,7 @@ public class VMSTblDAO {
 	        		"   COVID_DECLARE  VARCHAR (100) NOT NULL,\r\n" + 
 	        		"   VISIT_PURPOSE  VARCHAR (100) NOT NULL,\r\n" + 
 	        		"   TEMPERATURE  VARCHAR (100) NOT NULL,\r\n" + 
+	        		"   REMARKS  VARCHAR (100) NULL,\r\n" + 
 	        		"   TIME_IN_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
 	        		"   TIME_OUT_DT TIMESTAMP   NULL \r\n" + 
 	        		");");
@@ -85,7 +86,7 @@ public class VMSTblDAO {
 			Statement stmt = connection.createStatement();
 //	        stmt.executeUpdate("DROP TABLE IF EXISTS ticks");
 	        stmt.executeUpdate("ALTER TABLE VMS\r\n" + 
-	        		"ADD COLUMN SITE VARCHAR (100)  NULL;");
+	        		"ADD COLUMN REMARKS VARCHAR (100)  NULL;");
 //	        stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
 //	        ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
 //	        while (rs.next()) {

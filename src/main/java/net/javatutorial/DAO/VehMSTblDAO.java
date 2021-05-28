@@ -32,6 +32,7 @@ public class VehMSTblDAO {
 	        		"   DELIVERY_NOTICE_NO  VARCHAR (100) NULL,\r\n" + 
 	        		"   VISIT_PURPOSE  VARCHAR (100) NULL,\r\n" + 
 	        		"   TEMPERATURE  VARCHAR (100) NULL,\r\n" + 
+	        		"   REMARKS  VARCHAR (100) NULL,\r\n" + 
 	        		"   TIME_IN_DT TIMESTAMP  NOT NULL DEFAULT NOW(),\r\n" + 
 	        		"   TIME_OUT_DT TIMESTAMP   NULL \r\n" + 
 	        		");");
@@ -74,8 +75,7 @@ public class VehMSTblDAO {
 			connection = Main.getConnection();
 			Statement stmt = connection.createStatement();
 	        stmt.executeUpdate("ALTER TABLE VEHMS\r\n" + 
-	        		"ADD COLUMN SEAL_NO VARCHAR (100)  NULL,"
-	        		+ "ADD COLUMN CONTAINER_SIZE VARCHAR (100)  NULL;");
+	        		"ADD COLUMN REMARKS VARCHAR (100)  NULL;");
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			message = "" + e;

@@ -39,6 +39,10 @@ function validateForm() {
 		return false;
 	}
 }
+function showDiv(divId, element)
+{
+    document.getElementById(divId).style.display = element.value == "GOVERNMENT AGENCY" ? 'block' : 'none';
+}
 </script>
 </head>
 <body>
@@ -183,7 +187,7 @@ function validateForm() {
 						<div class="form-group col-md-4">
 							<label for="visitPurpose">Visit Purpose: </label> 
 							<% if(v == null){%>
-								<select
+								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
 									name="visitPurpose" class="form-control" required>
 									<%
 										for (int i = 0; i < visitPurpose.size(); i++) {
@@ -196,7 +200,7 @@ function validateForm() {
 								</select>
 							<% } 
 							else {%>
-								<select
+								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
 									name="visitPurpose" class="form-control" required>
 									<%
 										for (int i = 0; i < visitPurpose.size(); i++) {
@@ -240,6 +244,10 @@ function validateForm() {
 								class="form-control" name="temperature" id="temperature"
 								placeholder="36.6" minlength="2" maxlength="4" required>
 						</div>
+						<div class="form-group col-md-6">
+							<label for="remarks">Remarks: </label> <input type="text"
+								class="form-control" name="remarks" id="remarks">
+						</div>
 					</div>
 					<div class="form-row checkbox">
 						<input type="checkbox" id="coviddeclaration"
@@ -253,6 +261,22 @@ function validateForm() {
 								COVID-19 symptoms.</b>
 						</label>
 					</div>
+					<br>
+					<br>
+					<!--  <div id = "officerLogin" class="form-row">
+					<i>Please aproach guard house and seek approval from security officer on duty.</i>
+						<div class="form-group col-md-6">
+							<label for="idNo">Approving Officer ID Number: </label> <input type="text"
+								class="form-control" name="idNo" id="idNo" placeholder="xxxx" oninput="this.value = this.value.toUpperCase()"
+								minlength="4" maxlength="9" required>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="psw">Password</label> <input type="password" class="form-control" id="psw"
+								name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+								required><input type="checkbox" onclick="showPassword()">Show Password
+						</div>
+					</div>-->
 					<div class="form-row">
 						<button type="submit" class="btn btn-primary btn-lg active">Submit
 							Record</button>

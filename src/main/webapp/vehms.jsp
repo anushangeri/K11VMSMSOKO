@@ -42,7 +42,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -54,7 +54,7 @@
 						var sheet = xlsx.xl.worksheets['sheet1.xml'];
 					}
 				} ],
-				"order": [[13, 'desc']]
+				"order": [[17, 'desc']]
 			});
 		});
 	});
@@ -114,6 +114,7 @@
 							<th class="th-sm" style="display:none;">Covid Declaration?</th>
 							<th class="th-sm">Lorry Chet No.</th>
 							<th class="th-sm">Delivery Notice No.</th>
+							<th class="th-sm">Remarks</th>
 							<th class="th-sm">Purpose of Visit</th>
 							<th class="th-sm">Temperature</th>
 							<th class="th-sm">Time In</th>
@@ -196,6 +197,22 @@
 									<%
 										}
 									%>
+									<td>
+										<p><%=(v.getRemarks() != null ? v.getRemarks() : "No Remarks Yet")%></p>
+										<select id = "ddlRemarks" onchange="showDiv('dvRemarks<%=v.getVehicleId()%>', this)">
+									        <option value="N">No Edit Remarks</option>
+									        <option value="Y">Yes Edit Remarks</option>            
+									    </select>
+									    <hr />
+										<div id="dvRemarks<%=v.getVehicleId()%>" style="display: none">
+											<form method="POST" action ="/updateVehRemarks">
+												<input type="hidden" id="vehicleId" name="vehicleId" value="<%=v.getVehicleId()%>">
+												<input type="text" class="form-control" name="remarks"
+												oninput="this.value = this.value.toUpperCase()">
+												<input type="submit" name="Submit" value="Update">
+											</form>
+										</div>
+									</td>
 									<td><%=v.getVisitPurpose()%></td>
 									<td><%=v.getTemperature()%></td>
 									<td><%=sdf.format(v.getTimeInDt())%></td>
