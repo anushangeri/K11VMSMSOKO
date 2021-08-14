@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
+import net.javatutorial.DAO.DropdownListManagerDAO;
 import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.DAO.VehMSManagerDAO;
+import net.javatutorial.entity.Dropdown;
 import net.javatutorial.entity.Vehicle;
 
 /**
@@ -27,30 +29,35 @@ public class RetrieveVehicleByNRICServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usertype = (String) request.getSession(false).getAttribute("usertype");
 		String idNo = (String) request.getSession(false).getAttribute("idNo");
-		String idType = (String) request.getSession(false).getAttribute("idType");
 
 		//from client login view
 		String idNoFromClient = request.getParameter("idNo");
-		String idTypeFromClient = request.getParameter("idType");
 				
 		ArrayList<Vehicle> vList = null;
 		Vehicle v = null;
 		
 		if(usertype == null) {
 			if(!StringUtils.isEmpty(idNo)) {
-				vList = VehMSManagerDAO.retrieveByNameIDandType(idType, idNo);
+				vList = VehMSManagerDAO.retrieveByNameIDPopulate(idNo);
 				if(vList != null && vList.size() > 0) {
 					v = vList.get(0);
 				}
 			}
 		}
 		else {
-			vList = VehMSManagerDAO.retrieveByNameIDandType(idTypeFromClient, idNoFromClient);
+			vList = VehMSManagerDAO.retrieveByNameIDPopulate(idNoFromClient);
 			if(vList != null && vList.size() > 0) {
 				v = vList.get(0);
 			}
 		}
+		//getting all the dropdown
+		ArrayList<Dropdown> vehiclePurpose = DropdownListManagerDAO.retrieveByDropdownKey("VEHICLE_PURPOSE");
+		ArrayList<Dropdown> containerSize = DropdownListManagerDAO.retrieveByDropdownKey("VEHICLE_SIZE");
+		
 		request.setAttribute("vehicleLatRec", v);
+		request.setAttribute("containerSize", containerSize);
+		request.setAttribute("visitPurpose", vehiclePurpose);
+		
         RequestDispatcher rd = request.getRequestDispatcher("addVehicle.jsp");
         rd.forward(request, response);
 	}

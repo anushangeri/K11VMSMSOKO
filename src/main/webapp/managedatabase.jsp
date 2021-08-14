@@ -3,10 +3,6 @@
 <%@page import="java.util.*"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.net.URL"%>
-<%@page import="com.google.gdata.client.spreadsheet.SpreadsheetService"%>
-<%@page import="com.google.gdata.data.spreadsheet.CustomElementCollection"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListEntry"%>
-<%@page import="com.google.gdata.data.spreadsheet.ListFeed"%>
 <%@page import="com.google.gdata.util.ServiceException"%>
 
 <!DOCTYPE html>
@@ -106,6 +102,38 @@
               </form>
           </td>
 	      <td><form action="updateSiteTbl" method="post">
+                  <button class="btn" type="submit">Update</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Delete</button>
+              </form>
+          </td>
+	    </tr>
+	    <tr>
+	      <th scope="row">6</th>
+	      <td>VMS Archived</td>
+	      <td><form action="createVmsArchivedTbl" method="post">
+                  <button class="btn" type="submit">Create</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Update</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
+                  <button class="btn" type="submit">Delete</button>
+              </form>
+          </td>
+	    </tr>
+	    	    <tr>
+	      <th scope="row">7</th>
+	      <td>Dropdown List</td>
+	      <td><form action="createDropdownTbl" method="post">
+                  <button class="btn" type="submit">Create</button>
+              </form>
+          </td>
+	      <td><form action="-" method="post">
                   <button class="btn" type="submit">Update</button>
               </form>
           </td>
