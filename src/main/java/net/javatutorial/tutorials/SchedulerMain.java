@@ -15,7 +15,7 @@ public class SchedulerMain {
     	String line;
 		try 
 		{ 
-			URL url = new URL( "https://k11-vms.herokuapp.com/archiveVisitors" ); 
+			URL url = new URL( "https://k11-vms-msoko.herokuapp.com/archiveVisitors" ); 
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream())); 
 			line = in.readLine(); 
 
