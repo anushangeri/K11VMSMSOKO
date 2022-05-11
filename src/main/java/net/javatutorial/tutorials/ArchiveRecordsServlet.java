@@ -235,10 +235,10 @@ public class ArchiveRecordsServlet extends HttpServlet {
 //		} catch (MessagingException ex) {
 //			ex.printStackTrace();
 //		}
-		String visitorDeleteRecords = VMSArchiveManagerDAO.deleteAll();
-		String vehicleDeleteRecords = VehMSArchiveManagerDAO.deleteAll();
-		System.out.println(visitorDeleteRecords);
-		System.out.println(vehicleDeleteRecords);
+//		String visitorDeleteRecords = VMSArchiveManagerDAO.deleteAll();
+//		String vehicleDeleteRecords = VehMSArchiveManagerDAO.deleteAll();
+//		System.out.println(visitorDeleteRecords);
+//		System.out.println(vehicleDeleteRecords);
 
 		
 	}
