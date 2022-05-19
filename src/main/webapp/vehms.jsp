@@ -37,7 +37,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -49,7 +49,7 @@
 						var sheet = xlsx.xl.worksheets['sheet1.xml'];
 					}
 				} ],
-				"order": [[17, 'desc']]
+				"order": [[14, 'desc']]
 			});
 		});
 	});
@@ -233,14 +233,14 @@
 	</div>
 		<div class="container body-content">
 			<center>
-				<a href="/index.jsp" class="btn btn-warning btn-lg active" role="button"
-							aria-pressed="true">Back</a>
-		
 				<a href="retrieveVehToPopulate" class="btn btn-warning btn-lg active"
 				role="button" aria-pressed="true">Add Vehicle Record</a>
 				
 				<!-- Delete all record function is for K11 Admin only -->
-				<%if (request.getSession(false).getAttribute("usertype") != null) {
+				<%if (request.getSession(false).getAttribute("usertype") != null) { %>
+					<a href="/clientMain.jsp" class="btn btn-warning btn-lg active" role="button"
+							aria-pressed="true">Back</a>
+					<% 
 					String userInput = (String) request.getSession(false).getAttribute("usertype");
 					if (userInput.toUpperCase().equals("ADMIN")){ %>
 						<a href="deleteAllVehicle" class="btn btn-warning btn-lg active"
@@ -254,7 +254,11 @@
 				%>
 				<% 
 				}
+				else { 
 				%>
+				<a href="/index.jsp" class="btn btn-warning btn-lg active" role="button"
+							aria-pressed="true">Back</a>
+				<%}%>
 			</center>
 		</div>
 	<br>
