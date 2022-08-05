@@ -30,7 +30,6 @@ function validateForm() {
 		alert("COVID Alert: Invalid temperature or temperature is high. Please go home if you are sick.");
 		return false;
 	}
-	//remember to add  onsubmit="return validateForm()" in the form to use this function
 }
 function showDiv(divId, element)
 {
@@ -64,13 +63,11 @@ function showPassword() {
 			<%
  	String idNo = "SxxxxxxxJ";
 	String name = "";
-	String otpGenerated = "";
  	Visitor v = null;
  	ArrayList<Site> siteDropdown = new ArrayList<Site>();
  	ArrayList<Dropdown> visitPurpose = new ArrayList<Dropdown>();
  	if (request.getAttribute("visitorLatRec") != null) {
  		v = (Visitor) request.getAttribute("visitorLatRec");
- 		otpGenerated = (String) request.getAttribute("otpGenerated");
  	}
  	if (request.getAttribute("siteDropdown") != null) {
  		siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
@@ -84,7 +81,7 @@ function showPassword() {
  	}
  %>
 			<center>
-				<form action="getSMSOTP" method="post" name="getSMSOTP">
+				<form action="addVisitor" method="post" name="addVisitor" onsubmit="return validateForm()">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="name">Name: </label> <input type="text"
@@ -235,20 +232,8 @@ function showPassword() {
 						</div>
 					</div>
 					<div class="form-row">
-						<button type="submit" class="btn btn-primary btn-lg active">Get SMS OTP</button>
-					</div>
-					<br> <br>
-				</form>
-				<form action="addVisitor" method="post" name="addVisitor">
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="otp">Enter SMS OTP received: </label> <input
-								type="text" class="form-control" name="otp">
-						</div>
-						<input type="hidden" id="otpGenerated" name="otpGenerated" value="<%=otpGenerated%>">
-					</div>
-					<div class="form-row">
-						<button type="submit" class="btn btn-primary btn-lg active">Verify and Submit</button>
+						<button type="submit" class="btn btn-primary btn-lg active">Submit
+							Record</button>
 						<a href="/vms" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
 					</div>
