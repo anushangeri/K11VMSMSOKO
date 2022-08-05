@@ -2,6 +2,7 @@ package net.javatutorial.tutorials;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -33,7 +34,9 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import net.javatutorial.DAO.VMSArchiveManagerDAO;
+import net.javatutorial.DAO.VMSManagerDAO;
 import net.javatutorial.DAO.VehMSArchiveManagerDAO;
+import net.javatutorial.DAO.VehMSManagerDAO;
 import net.javatutorial.entity.Vehicle;
 import net.javatutorial.entity.Visitor;
 
@@ -45,6 +48,8 @@ import net.javatutorial.entity.Visitor;
  * 
  * Monthly batch job will run to retrieve all data in archive table and email to client 
  * and delete data from archive table leaving only 30 days
+ * Monthly batch job will run to retrieve all data in main table and email to client 
+ * so client will have previous month and current month data
  *
  */
 public class ArchiveRecordsServlet extends HttpServlet {
@@ -59,7 +64,8 @@ public class ArchiveRecordsServlet extends HttpServlet {
 		//archiving vehicle records
 		String vehicleMessage = VehMSArchiveManagerDAO.moveVehicle();
 		System.out.println(vehicleMessage);
-		
+		SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
+		SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
 		// get the current date
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 		// get the calendar last day of this month
@@ -72,23 +78,33 @@ public class ArchiveRecordsServlet extends HttpServlet {
 			
 			try 
 			{ 
+				Calendar calPreviousMonth = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+				calPreviousMonth.add(Calendar.MONTH, -1);
 				
 				//start making email
 				//retrieving visitor records from archive table
 				ArrayList<Visitor> visitorList = VMSArchiveManagerDAO.retrieveAll();
-				System.out.println("retrieved visitors successful");
+				System.out.println("retrieved visitors previous month successful");
 				
 				//retrieving visitor records from archive table
 				ArrayList<Vehicle> vehicleList = VehMSArchiveManagerDAO.retrieveAll();
-				System.out.println("retrieved vehicles successful");
+				System.out.println("retrieved vehicles previous month successful");
+				
+				//retrieving visitor records from main table
+				ArrayList<Visitor> visitorListCurrMonth = VMSManagerDAO.retrieveAll();
+				System.out.println("retrieved visitors current month successful");
+				
+				//retrieving visitor records from archive table
+				ArrayList<Vehicle> vehicleListCurrMonth = VehMSManagerDAO.retrieveAll();
+				System.out.println("retrieved vehicles current month successful");
 				
 				LocalDate localDate = LocalDate.now(ZoneId.of("GMT+08:00"));
-				String fileName = "vms_records_MSOKO"+ localDate +".xls";
+				String fileName = "vms_records_dev"+ localDate +".xls";
 				
 				// workbook object
 				XSSFWorkbook workbook = new XSSFWorkbook();
 				// spreadsheet object
-				XSSFSheet visitorspreadsheet = workbook.createSheet(" Visitor Records ");
+				XSSFSheet visitorspreadsheet = workbook.createSheet(" Visitor Records_" + monthFormat.format(calPreviousMonth.getTime()) + "_" + yearFormat.format(calPreviousMonth.getTime()));
 				// creating a row object
 
 				XSSFRow visitorheader = visitorspreadsheet.createRow(0);
@@ -114,7 +130,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				int rowid = 1;
 
 				System.out.println("writing the data into the sheets...");
-				System.out.println("writing visitor records..");
+				System.out.println("writing visitor records from previous month..");
 				// writing the data into the sheets...
 				for (Visitor a : visitorList) {
 
@@ -141,7 +157,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 					row.createCell(16).setCellValue(a.getArchivedDt().toString());
 				}
 				
-				XSSFSheet vehiclespreadsheet = workbook.createSheet(" Vehicle Records ");
+				XSSFSheet vehiclespreadsheet = workbook.createSheet(" Vehicle Records " + monthFormat.format(calPreviousMonth.getTime()) + "_" + yearFormat.format(calPreviousMonth.getTime()));
 				// creating a row object
 
 				XSSFRow vehicleheader = vehiclespreadsheet.createRow(0);
@@ -166,11 +182,116 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				
 				rowid = 1;
 
-				System.out.println("writing vehicle records...");
+				System.out.println("writing vehicle records from previous month...");
 				// writing the data into the sheets...
 				for (Vehicle a : vehicleList) {
 
 					row = vehiclespreadsheet.createRow(rowid++);
+
+					row.createCell(0).setCellValue(a.getVehicleId());
+					row.createCell(1).setCellValue(a.getName());
+					row.createCell(2).setCellValue(a.getCompanyName());
+					row.createCell(3).setCellValue(a.getIdType());
+					row.createCell(4).setCellValue(a.getIdNo());
+					row.createCell(5).setCellValue(a.getMobileNo());
+					row.createCell(6).setCellValue(a.getPrimeMoverNo());
+					row.createCell(7).setCellValue(a.getContainerNo());
+					row.createCell(8).setCellValue(a.getLoadedNoLoaded());
+					row.createCell(9).setCellValue(a.getLorryChetNumber());
+					row.createCell(10).setCellValue(a.getDeliveryNoticeNumber());
+					row.createCell(11).setCellValue(a.getVisitPurpose());
+					row.createCell(12).setCellValue(a.getSealNo());
+					row.createCell(13).setCellValue(a.getContainerNo());
+					row.createCell(14).setCellValue(a.getRemarks());
+					row.createCell(15).setCellValue(a.getTimeInDt().toString());
+					if (a.getTimeOutDt() != null) {
+						row.createCell(16).setCellValue(a.getTimeOutDt().toString());
+					}
+					row.createCell(17).setCellValue(a.getArchivedDt().toString());
+				}
+				
+				// spreadsheet object
+				XSSFSheet visitorCurrMonthspreadsheet = workbook.createSheet(" Visitor Records_" + monthFormat.format(cal.getTime()) + "_" + yearFormat.format(cal.getTime()));
+				// creating a row object
+
+				XSSFRow visitorCurrMonthheader = visitorCurrMonthspreadsheet.createRow(0);
+				visitorCurrMonthheader.createCell(0).setCellValue("Record ID");
+				visitorCurrMonthheader.createCell(1).setCellValue("Visitor Name");
+				visitorCurrMonthheader.createCell(2).setCellValue("Visitor Company Name");
+				visitorCurrMonthheader.createCell(3).setCellValue("Visited Site");
+				visitorCurrMonthheader.createCell(4).setCellValue("Visitor ID Type");
+				visitorCurrMonthheader.createCell(5).setCellValue("Visitor ID Number");
+				visitorCurrMonthheader.createCell(6).setCellValue("Visitor Mobile No.");
+				visitorCurrMonthheader.createCell(7).setCellValue("Visitor Vehicle No.");
+				visitorCurrMonthheader.createCell(8).setCellValue("Host Name");
+				visitorCurrMonthheader.createCell(9).setCellValue("Host Number");
+				visitorCurrMonthheader.createCell(10).setCellValue("Visitor Card ID");
+				visitorCurrMonthheader.createCell(11).setCellValue("Remarks");
+				visitorCurrMonthheader.createCell(12).setCellValue("Visit Purpose");
+				visitorCurrMonthheader.createCell(13).setCellValue("Approving Officer");
+				visitorCurrMonthheader.createCell(14).setCellValue("Time In Date");
+				visitorCurrMonthheader.createCell(15).setCellValue("Time Out Date");
+				visitorCurrMonthheader.createCell(16).setCellValue("Archived Date");
+
+				rowid = 1;
+
+				System.out.println("writing visitor records from current month..");
+				// writing the data into the sheets...
+				for (Visitor a : visitorListCurrMonth) {
+
+					row = visitorCurrMonthspreadsheet.createRow(rowid++);
+
+					row.createCell(0).setCellValue(a.getVmsId());
+					row.createCell(1).setCellValue(a.getName());
+					row.createCell(2).setCellValue(a.getCompanyName());
+					row.createCell(3).setCellValue(a.getSite());
+					row.createCell(4).setCellValue(a.getIdType());
+					row.createCell(5).setCellValue(a.getIdNo());
+					row.createCell(6).setCellValue(a.getMobileNo());
+					row.createCell(7).setCellValue(a.getVehicleNo());
+					row.createCell(8).setCellValue(a.getHostName());
+					row.createCell(9).setCellValue(a.getHostNo());
+					row.createCell(10).setCellValue(a.getVisitorCardId());
+					row.createCell(11).setCellValue(a.getRemarks());
+					row.createCell(12).setCellValue(a.getVisitPurpose()); 
+					row.createCell(13).setCellValue(a.getApprovingOfficer());
+					row.createCell(14).setCellValue(a.getTimeInDt().toString());
+					if (a.getTimeOutDt() != null) {
+						row.createCell(15).setCellValue(a.getTimeOutDt().toString());
+					}
+					row.createCell(16).setCellValue(a.getArchivedDt().toString());
+				}
+				
+				XSSFSheet vehicleCurrMonthspreadsheet = workbook.createSheet(" Vehicle Records " + monthFormat.format(cal.getTime()) + "_" + yearFormat.format(cal.getTime()));
+				// creating a row object
+
+				XSSFRow vehicleCurrMonthheader = vehicleCurrMonthspreadsheet.createRow(0);
+				vehicleCurrMonthheader.createCell(0).setCellValue("Record ID");
+				vehicleCurrMonthheader.createCell(1).setCellValue("Visitor Name");
+				vehicleCurrMonthheader.createCell(2).setCellValue("Visitor Company Name");
+				vehicleCurrMonthheader.createCell(3).setCellValue("Visitor ID Type");
+				vehicleCurrMonthheader.createCell(4).setCellValue("Visitor ID Number");
+				vehicleCurrMonthheader.createCell(5).setCellValue("Visitor Mobile No.");
+				vehicleCurrMonthheader.createCell(6).setCellValue("Vehicle PrimeMover No.");
+				vehicleCurrMonthheader.createCell(7).setCellValue("Vehicle Container No.");
+				vehicleCurrMonthheader.createCell(8).setCellValue("Vehicle Loaded?");
+				vehicleCurrMonthheader.createCell(9).setCellValue("Lorry Chet Number");
+				vehicleCurrMonthheader.createCell(10).setCellValue("Delivery Notice No.");
+				vehicleCurrMonthheader.createCell(11).setCellValue("Visit Purpose");
+				vehicleCurrMonthheader.createCell(12).setCellValue("Seal No.");
+				vehicleCurrMonthheader.createCell(13).setCellValue("Container Size");
+				vehicleCurrMonthheader.createCell(14).setCellValue("Remarks");
+				vehicleCurrMonthheader.createCell(15).setCellValue("Time In Date");
+				vehicleCurrMonthheader.createCell(16).setCellValue("Time Out Date");
+				vehicleCurrMonthheader.createCell(17).setCellValue("Archived Date");
+				
+				rowid = 1;
+
+				System.out.println("writing vehicle records from current month...");
+				// writing the data into the sheets...
+				for (Vehicle a : vehicleListCurrMonth) {
+
+					row = vehicleCurrMonthspreadsheet.createRow(rowid++);
 
 					row.createCell(0).setCellValue(a.getVehicleId());
 					row.createCell(1).setCellValue(a.getName());
