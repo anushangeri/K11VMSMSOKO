@@ -1,3 +1,4 @@
+<%@page import="com.google.gdata.util.common.base.StringUtil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="loginVMSCSS.jsp"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
@@ -17,11 +18,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-<style type="text/css"></style>
-<script type="text/javascript"
-	src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css" rel="stylesheet" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
 <script>
 function validateForm() {
 	var tempAsStr = document.forms["addVisitor"]["temperature"].value;
@@ -30,6 +35,7 @@ function validateForm() {
 		alert("COVID Alert: Invalid temperature or temperature is high. Please go home if you are sick.");
 		return false;
 	}
+	//remember to add  onsubmit="return validateForm()" in the form to use this function
 }
 function showDiv(divId, element)
 {
@@ -43,6 +49,7 @@ function showOfficeDivOnLoad(officerLogin,visitPurpose)
     document.getElementById(officerLogin).style.display == 'block' ? document.getElementById("officerIdNo").setAttribute("required", "") : document.getElementById("officerIdNo").removeAttribute("required");
     
 }
+
 function showPassword() {
 	  var x = document.getElementById("officerpsw");
 	  if (x.type === "password") {
@@ -50,6 +57,24 @@ function showPassword() {
 	  } else {
 	    x.type = "password";
 	  }
+} 
+
+function getSMSOTP()
+{
+	
+    var otp = Math.floor((Math.random() * 1000000) + 1);
+    
+    var processedMobileNo =  document.querySelector("#processedMobileNo").value;
+    document.querySelector("#otpGenerated").value = otp;
+    $.ajax({
+        type: "POST",
+        url: "../getSMSOTP",
+        data: "processedMobileNo="+processedMobileNo+"&otpGenerated="+otp,
+        success: function(result){
+        	alert("OTP sent successfully, check SMS");
+        }
+    });
+    
 }
 </script>
 </head>
@@ -63,11 +88,14 @@ function showPassword() {
 			<%
  	String idNo = "SxxxxxxxJ";
 	String name = "";
+	String otpGenerated = "";
  	Visitor v = null;
  	ArrayList<Site> siteDropdown = new ArrayList<Site>();
  	ArrayList<Dropdown> visitPurpose = new ArrayList<Dropdown>();
+ 	String readOnlyStatus = "required"; //this is to set the status to readonly for view function only else it is a required field
  	if (request.getAttribute("visitorLatRec") != null) {
  		v = (Visitor) request.getAttribute("visitorLatRec");
+ 		otpGenerated = (String) request.getAttribute("otpGenerated");
  	}
  	if (request.getAttribute("siteDropdown") != null) {
  		siteDropdown = (ArrayList<Site>) request.getAttribute("siteDropdown");
@@ -75,30 +103,34 @@ function showPassword() {
  	if (request.getAttribute("visitPurpose") != null) {
  		visitPurpose = (ArrayList<Dropdown>) request.getAttribute("visitPurpose");
  	}
+ 	// is not admin or officer, means is it a normal visitor
  	if (request.getSession(false).getAttribute("usertype") == null && request.getSession(false).getAttribute("idNo") != null) {
  		idNo = (String) request.getSession(false).getAttribute("idNo");
  		name = (String) request.getSession(false).getAttribute("name");
  	}
+ 	if (request.getAttribute("status") != null) {
+ 		readOnlyStatus = (String) request.getAttribute("status");
+ 	}
  %>
 			<center>
-				<form action="addVisitor" method="post" name="addVisitor" onsubmit="return validateForm()">
+				<form action="addVisitor" method="post" name="addVisitor">
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="name">Name: </label> <input type="text"
+							<label for="name">Name (姓名): </label> <input type="text"
 								class="form-control" name="name"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? name : v.getName())%>" required>
+								value="<%=((v == null) ? name : v.getName())%>" <%=readOnlyStatus %>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="companyName">Company Name: </label> <input
+							<label for="companyName">Company Name (公司名称): </label> <input
 								type="text" class="form-control" name="companyName"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getCompanyName())%>" required>
+								value="<%=((v == null) ? "" : v.getCompanyName())%>" <%=readOnlyStatus %>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="siteVisiting">Site You Are Visiting: </label> 
+							<label for="siteVisiting">Site You Are Visiting (访问地点): </label> 
 							<% if(v == null){%>
-								<select name="siteVisiting" class="form-control" required>
+								<select name="siteVisiting" class="form-control" <%=readOnlyStatus %>>
 									<%
 										for (Site eachSite: siteDropdown) {
 									%>
@@ -110,7 +142,7 @@ function showPassword() {
 								</select>
 							<% } 
 							else {%>
-								<select name="siteVisiting" class="form-control" required>
+								<select name="siteVisiting" class="form-control" <%=readOnlyStatus %>>
 									<%
 										for (Site eachSite: siteDropdown) {
 									%>
@@ -126,23 +158,22 @@ function showPassword() {
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="idNo">ID Number: </label> <input type="text"
+							<label for="idNo">ID Number (ID号码): </label> <input type="text"
 								class="form-control" name="idNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getIdNo())%>"
-								minlength="4" maxlength="9"  <%=((v == null) ? "" : "readonly")%>>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="mobileNo">Mobile: </label> <input type="text"
-								class="form-control" name="mobileNo"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getMobileNo())%>" required>
+								value="<%=((v == null) ? idNo : v.getIdNo())%>"
+								minlength="4" maxlength="15"  <%=((v == null) ? "" : "readonly")%>>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="visitPurpose">Visit Purpose: </label> 
+						    <label for="mobileNo">Mobile No. (手机号码): </label> <input type="tel" class="form-control" id="mobileNo" name="mobileNo"
+						    onchange="processMobileNo(event)" value="<%=((v == null) ? "" : v.getMobileNo())%>" <%=readOnlyStatus %>>
+						    <input type="hidden" id="processedMobileNo" name="processedMobileNo"/>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="visitPurpose">Visit Purpose (访问目的): </label> 
 							<% if(v == null){%>
 								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
-									name="visitPurpose" class="form-control" required>
+									name="visitPurpose" class="form-control" <%=readOnlyStatus %>>
 									<%
 										for (Dropdown d: visitPurpose) {
 									%>
@@ -155,7 +186,7 @@ function showPassword() {
 							<% } 
 							else {%>
 								<select id = "visitPurpose" onchange="showDiv('officerLogin', this)"
-									name="visitPurpose" class="form-control" required>
+									name="visitPurpose" class="form-control" <%=readOnlyStatus %>>
 									<%
 										for (Dropdown d: visitPurpose) {
 									%>
@@ -170,28 +201,26 @@ function showPassword() {
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="vehicleNo">Vehicle Number: </label> <input
+							<label for="vehicleNo">Vehicle Number (车牌号码): </label> <input
 								type="text" class="form-control" name="vehicleNo"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getVehicleNo())%>" required>
+								value="<%=((v == null) ? "" : v.getVehicleNo())%>" <%=readOnlyStatus %>>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="hostName">Host Name: </label> <input type="text"
+							<label for="hostName">Host Name (接待人): </label> <input type="text"
 								class="form-control" name="hostName"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getHostName())%>" required>
+								value="<%=((v == null) ? "" : v.getHostName())%>" <%=readOnlyStatus %>>
+						</div>
+						<div class="form-group col-md-4">
+							<label for="hostNo">Host No. (接待人电话号码): </label> <input type="tel" class="form-control" id="hostNo" name="hostNo" onchange="processHostNo(event)" value="<%=((v == null) ? "" : v.getHostNo())%>" <%=readOnlyStatus %>>
+							<input type="hidden" id="processedHostNo" name="processedHostNo"/>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="hostNo">Host Number: </label> <input type="text"
-								class="form-control" name="hostNo"
-								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getHostNo())%>" required>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="visitorCardId">Visitor Card ID: </label> <input
+							<label for="visitorCardId">Visitor Card ID (访问卡号码): </label> <input
 								type="text" class="form-control" name="visitorCardId"
 								oninput="this.value = this.value.toUpperCase()"
-								value="<%=((v == null) ? "" : v.getVisitorCardId())%>" required>
+								value="<%=((v == null) ? "" : v.getVisitorCardId())%>" <%=readOnlyStatus %>>
 						</div>
 <!-- 						<div class="form-group col-md-6"> -->
 <!-- 							<label for="temperature">Temperature: </label> <input type="text" -->
@@ -199,8 +228,9 @@ function showPassword() {
 <!-- 								placeholder="36.6" minlength="2" maxlength="4" required> -->
 <!-- 						</div> -->
 						<div class="form-group col-md-6">
-							<label for="remarks">Remarks: </label> <input type="text"
-								class="form-control" name="remarks" id="remarks">
+							<label for="remarks">Remarks (其他): </label> <input type="text"
+								class="form-control" name="remarks" id="remarks" 
+								value="<%=((v == null) ? "" : v.getRemarks())%>" <%=readOnlyStatus %>>
 						</div>
 					</div>
 <!-- 					<div class="form-row checkbox"> -->
@@ -216,7 +246,6 @@ function showPassword() {
 <!-- 						</label> -->
 <!-- 					</div> -->
 					<br>
-					<br>
 					<div id = "officerLogin" class="form-row">
 					<i>Please aproach guard house and seek approval from security officer on duty.</i>
 						<div class="form-group col-md-6">
@@ -225,22 +254,52 @@ function showPassword() {
 								minlength="4" maxlength="9">
 						</div>
 						<div class="form-group col-md-4">
-							<label for="officerpsw">Password</label> <input type="password" class="form-control" id="officerpsw"
+							<label for="officerpsw">Password:</label> <input type="password" class="form-control" id="officerpsw"
 								name="officerpsw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 								title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
 								><input type="checkbox" onclick="showPassword()">Show Password
 						</div>
 					</div>
 					<div class="form-row">
-						<button type="submit" class="btn btn-primary btn-lg active">Submit
+						<button type="submit" class="btn btn-primary btn-lg active" <%=readOnlyStatus.equals("readonly") ? "disabled" : ""%>>Submit
 							Record</button>
 						<a href="/vms" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
 					</div>
-					<br> <br>
 				</form>
 			</center>
 		</div>
 	</div>
 </body>
+<script>
+const phoneInputField = document.querySelector("#mobileNo");
+const phoneInput = window.intlTelInput(phoneInputField, {
+	 preferredCountries: ['sg', 'my'],	
+	 utilsScript:
+     "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+ });
+processedMobileNo = document.querySelector("#processedMobileNo");
+function processMobileNo(event) {
+	 event.preventDefault();
+	 const phoneNumber = phoneInput.getNumber();
+	 processedMobileNo.value = phoneNumber;
+}
+</script>
+<script>
+const phoneInputFieldHostNo = document.querySelector("#hostNo");
+const phoneInputHostNo = window.intlTelInput(phoneInputFieldHostNo, {
+ preferredCountries: ['sg', 'my'],	
+ utilsScript:
+    "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+});
+processedHostNo = document.querySelector("#processedHostNo");
+function processHostNo(event) {
+ event.preventDefault();
+
+ const phoneNumberHostNo = phoneInputHostNo.getNumber();
+ processedHostNo.value = phoneNumberHostNo;
+}
+
+</script>
+
 </html>

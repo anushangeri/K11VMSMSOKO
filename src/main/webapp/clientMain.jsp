@@ -18,6 +18,12 @@
 	rel="stylesheet">
 </head>
 <body>
+	<% 
+	String message = (String) request.getAttribute("responseObj");
+	if (message != null && !StringUtils.isEmpty(message)) {
+	%>
+	<label class="heading"><%=message%> </label><br>
+	<%} %>
 	<center> <br> <br>
 		<div class="container">
 			<form action="vms" method="get" >

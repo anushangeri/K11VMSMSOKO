@@ -13,7 +13,7 @@ public class SchedulerMain {
     	String line;
 		try 
 		{ 
-			URL url = new URL( "https://k11-vms-msoko.herokuapp.com/archiveRecords" ); 
+			URL url = new URL( "https://k11-vms.herokuapp.com/archiveRecords" ); 
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream())); 
 			line = in.readLine(); 
 

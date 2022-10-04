@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -106,6 +105,13 @@
 	<servlet>
 		<description />
 
+		<display-name>SendOTPSMSServlet</display-name>
+		<servlet-name>SendOTPSMSServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.SendOTPSMSServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+
 		<display-name>VMSCheckNRICServlet</display-name>
 		<servlet-name>VMSCheckNRICServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.VMSCheckNRICServlet</servlet-class>
@@ -137,7 +143,12 @@
 		<servlet-name>UpdateVisitorRemarksRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.UpdateVisitorRemarksRecordServlet</servlet-class>
 	</servlet>
-	
+	<servlet>
+		<description />
+		<display-name>UpdateVisitorApprovingOfficerRecordServlet</display-name>
+		<servlet-name>UpdateVisitorApprovingOfficerRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateVisitorApprovingOfficerRecordServlet</servlet-class>
+	</servlet>
 	<!-- VMS Archived START  -->
 	<servlet>
 		<description />
@@ -210,6 +221,12 @@
 	</servlet>
 	<servlet>
 		<description />
+		<display-name>UpdateVehicleApprovalRecordServlet</display-name>
+		<servlet-name>UpdateVehicleApprovalRecordServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UpdateVehicleApprovalRecordServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
 		<display-name>ViewVehicleRecordServlet</display-name>
 		<servlet-name>ViewVehicleRecordServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.ViewVehicleRecordServlet</servlet-class>
@@ -228,6 +245,12 @@
 		<display-name>CVehMSArchivedTblServlet</display-name>
 		<servlet-name>CVehMSArchivedTblServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.CVehMSArchivedTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>UVehMSArchiveTblServlet</display-name>
+		<servlet-name>UVehMSArchiveTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UVehMSArchiveTblServlet</servlet-class>
 	</servlet>
 	<!-- VEHMS Archived END  -->
 	
@@ -356,7 +379,13 @@
 		<servlet-name>RetrieveDropdownByKeyServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.RetrieveDropdownByKeyServlet</servlet-class>
 	</servlet>
-	<!-- Site END  -->
+	<servlet>
+		<description />
+		<display-name>DeleteDropdownbyDropdownIdServlet</display-name>
+		<servlet-name>DeleteDropdownbyDropdownIdServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.DeleteDropdownbyDropdownIdServlet</servlet-class>
+	</servlet>	
+	<!--  Dropdown List END  -->
 	
 	<servlet-mapping>
 		<servlet-name>simpleServlet</servlet-name>
@@ -431,8 +460,16 @@
 		<url-pattern>/updateVisitorRemarks</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>UpdateVisitorApprovingOfficerRecordServlet</servlet-name>
+		<url-pattern>/approveVisitor</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>DeleteAllVisitorRecordServlet</servlet-name>
 		<url-pattern>/deleteAllVisitor</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SendOTPSMSServlet</servlet-name>
+		<url-pattern>/getSMSOTP</url-pattern>
 	</servlet-mapping>
 
 	<!-- VMS Archived START  -->
@@ -488,6 +525,10 @@
 		<url-pattern>/updateVehRemarks</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>UpdateVehicleApprovalRecordServlet</servlet-name>
+		<url-pattern>/updateVehAprrove</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>ViewVehicleRecordServlet</servlet-name>
 		<url-pattern>/vehms</url-pattern>
 	</servlet-mapping>
@@ -498,6 +539,10 @@
 		<servlet-name>CVehMSArchivedTblServlet</servlet-name>
 		<url-pattern>/createVehMSArchivedTbl</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UVehMSArchiveTblServlet</servlet-name>
+		<url-pattern>/updateVehmsArchivedTbl</url-pattern>
+	</servlet-mapping>	
 	<!-- VEHMS Archived END  -->
 	
 	<!-- Client Account START  -->
@@ -584,6 +629,10 @@
 	<servlet-mapping>
 		<servlet-name>RetrieveDropdownByKeyServlet</servlet-name>
 		<url-pattern>/getDropdownList</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteDropdownbyDropdownIdServlet</servlet-name>
+		<url-pattern>/deleteDropdownbyDropdownId</url-pattern>
 	</servlet-mapping>
 	<!-- Dropdown END  -->
 	

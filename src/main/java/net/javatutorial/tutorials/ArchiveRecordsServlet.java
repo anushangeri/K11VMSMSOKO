@@ -99,7 +99,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				System.out.println("retrieved vehicles current month successful");
 				
 				LocalDate localDate = LocalDate.now(ZoneId.of("GMT+08:00"));
-				String fileName = "vms_records_dev"+ localDate +".xls";
+				String fileName = "vms_records_msoko"+ localDate +".xls";
 				
 				// workbook object
 				XSSFWorkbook workbook = new XSSFWorkbook();
@@ -160,6 +160,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				XSSFSheet vehiclespreadsheet = workbook.createSheet(" Vehicle Records " + monthFormat.format(calPreviousMonth.getTime()) + "_" + yearFormat.format(calPreviousMonth.getTime()));
 				// creating a row object
 
+				//covid indicator and temperature is removed
 				XSSFRow vehicleheader = vehiclespreadsheet.createRow(0);
 				vehicleheader.createCell(0).setCellValue("Record ID");
 				vehicleheader.createCell(1).setCellValue("Visitor Name");
@@ -176,9 +177,12 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				vehicleheader.createCell(12).setCellValue("Seal No.");
 				vehicleheader.createCell(13).setCellValue("Container Size");
 				vehicleheader.createCell(14).setCellValue("Remarks");
-				vehicleheader.createCell(15).setCellValue("Time In Date");
-				vehicleheader.createCell(16).setCellValue("Time Out Date");
-				vehicleheader.createCell(17).setCellValue("Archived Date");
+				vehicleheader.createCell(15).setCellValue("Warehouse Level");
+				vehicleheader.createCell(16).setCellValue("Warehouse Site");
+				vehicleheader.createCell(17).setCellValue("Warehouse Approver");
+				vehicleheader.createCell(18).setCellValue("Time In Date");
+				vehicleheader.createCell(19).setCellValue("Time Out Date");
+				vehicleheader.createCell(20).setCellValue("Archived Date");
 				
 				rowid = 1;
 
@@ -203,11 +207,14 @@ public class ArchiveRecordsServlet extends HttpServlet {
 					row.createCell(12).setCellValue(a.getSealNo());
 					row.createCell(13).setCellValue(a.getContainerNo());
 					row.createCell(14).setCellValue(a.getRemarks());
-					row.createCell(15).setCellValue(a.getTimeInDt().toString());
+					row.createCell(15).setCellValue(a.getWarehouseLevel());
+					row.createCell(16).setCellValue(a.getSite());
+					row.createCell(17).setCellValue(a.getWarehouseApprover());
+					row.createCell(18).setCellValue(a.getTimeInDt().toString());
 					if (a.getTimeOutDt() != null) {
-						row.createCell(16).setCellValue(a.getTimeOutDt().toString());
+						row.createCell(19).setCellValue(a.getTimeOutDt().toString());
 					}
-					row.createCell(17).setCellValue(a.getArchivedDt().toString());
+					row.createCell(20).setCellValue(a.getArchivedDt().toString());
 				}
 				
 				// spreadsheet object
@@ -279,8 +286,11 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				vehicleCurrMonthheader.createCell(12).setCellValue("Seal No.");
 				vehicleCurrMonthheader.createCell(13).setCellValue("Container Size");
 				vehicleCurrMonthheader.createCell(14).setCellValue("Remarks");
-				vehicleCurrMonthheader.createCell(15).setCellValue("Time In Date");
-				vehicleCurrMonthheader.createCell(16).setCellValue("Time Out Date");
+				vehicleCurrMonthheader.createCell(15).setCellValue("Warehouse Level");
+				vehicleCurrMonthheader.createCell(16).setCellValue("Warehouse Site");
+				vehicleCurrMonthheader.createCell(17).setCellValue("Warehouse Approver");
+				vehicleCurrMonthheader.createCell(18).setCellValue("Time In Date");
+				vehicleCurrMonthheader.createCell(19).setCellValue("Time Out Date");
 				
 				rowid = 1;
 
@@ -305,11 +315,16 @@ public class ArchiveRecordsServlet extends HttpServlet {
 					row.createCell(12).setCellValue(a.getSealNo());
 					row.createCell(13).setCellValue(a.getContainerNo());
 					row.createCell(14).setCellValue(a.getRemarks());
-					row.createCell(15).setCellValue(a.getTimeInDt().toString());
+					row.createCell(15).setCellValue(a.getWarehouseLevel());
+					row.createCell(16).setCellValue(a.getSite());
+					row.createCell(17).setCellValue(a.getWarehouseApprover());
+					row.createCell(18).setCellValue(a.getTimeInDt().toString());
 					if (a.getTimeOutDt() != null) {
-						row.createCell(16).setCellValue(a.getTimeOutDt().toString());
+						row.createCell(19).setCellValue(a.getTimeOutDt().toString());
 					}
 				}
+				
+				
 				System.out.println("writing finished, sending email ...");
 				// .xlsx is the format for Excel Sheets...
 				// writing the workbook into the file...
@@ -319,8 +334,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				workbook.close();
 				// out.close();
 
-				//String to = "k11.sivalingam@gmail.com";// change accordingly
-				//String toClient = "charmaine@mitsui-soko.com.sg";// change accordingly
+				String to = "k11.sivalingam@gmail.com";// change accordingly
 				final String user = "Shangeri1994@k11.com.sg";// change accordingly
 				final String password = "Sh@ngeri94";// change accordingly
 
@@ -339,9 +353,8 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				try {
 					MimeMessage message = new MimeMessage(session);
 					message.setFrom(new InternetAddress(user));
-					message.addRecipients(Message.RecipientType.TO, InternetAddress.parse("k11.sivalingam@gmail.com,charmaine@mitsui-soko.com.sg"));
-					//message.addRecipient(Message.RecipientType.TO, new InternetAddress(toClient));
-					message.setSubject("K11 VMS Records for MSOKO");
+					message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+					message.setSubject("K11 VMS Records for SWV");
 
 					// Create the message part
 					BodyPart messageBodyPart = new MimeBodyPart();

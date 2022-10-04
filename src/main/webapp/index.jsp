@@ -30,7 +30,6 @@
 		session.removeAttribute("idNo");
 	%>
 	<center>
-		<br> <br>
 		<div class="container">
 			<form method="POST" action="vmsCheckNRIC.jsp">
 				<input type="hidden" id="recordType" name="recordType"
@@ -43,12 +42,10 @@
 							• staff <br> 
 							• government agency <br> 
 							Select this.
-
 						</div>
 					</div>
 				</button>
 			</form>
-			<br>
 			<form method="POST" action="vmsCheckNRIC.jsp">
 				<input type="hidden" id="recordType" name="recordType"
 					value="vehicleRecord">
@@ -56,6 +53,7 @@
 					<div class="card bg-warning text-white">
 						<div class="card-body font-size-percent">
 							Are you one of the following? <br> 
+							• gate pass <br> 
 							• commercial vehicle <br>
 							• container <br> 
 							Select this.
@@ -63,7 +61,16 @@
 					</div>
 				</button>
 			</form>
-			<br>
+			<form method="POST" action="clientLogin.jsp">
+				<button type="submit" id="removeBackground">
+					<div class="card bg-primary text-white">
+						<div class="card-body font-size-percent">
+							Warehouse Personnel. 
+							Select this.
+						</div>
+					</div>
+				</button>
+			</form>
 		</div>
 	</center>
 </body>

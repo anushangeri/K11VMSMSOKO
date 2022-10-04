@@ -38,7 +38,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -50,7 +50,7 @@
 						var sheet = xlsx.xl.worksheets['sheet1.xml'];
 					}
 				} ],
-				"order": [[13, 'desc']]
+				"order": [[14, 'desc']]
 			});
 		});
 	});
@@ -85,17 +85,22 @@
 					<thead>
 						<tr>
 							<th class="th-sm">S/N</th>
+							<th class="th-sm">View</th>
 							<th class="th-sm">Name</th>
 							<th class="th-sm">Company Name</th>
 							<th class="th-sm">Site Visited</th>
-							<%if(userType == null) { %>
-								<th class="th-sm" style="display:none;">ID Number</th>
-							<% 
-							} else{
-							%>
-								 <th class="th-sm">ID Number</th>
+							<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
 							<%
-							}%>
+							if (userType == null) {
+							%>
+							<th class="th-sm" style="display: none;">ID Number</th>
+							<%
+							} else {
+							%>
+							<th class="th-sm">ID Number <i>(Click to Add New Record)</i></th>
+							<%
+							}
+							%>
 							<th class="th-sm">Visitor Contact Number</th>
 							<th class="th-sm">Vehicle Number</th>
 							<th class="th-sm">Host Name</th>
@@ -117,19 +122,27 @@
 						%>
 								<tr>
 									<td><%=v.getVmsId()%></td>
+									<td><form method="GET" action="/retrieveToPopulate">
+										<input type="hidden" id="vmsId" name="vmsId"
+											value="<%=v.getVmsId()%>"> <input type="hidden"
+											id="status" name="status" value="readonly"> <input
+											type="submit" name="Submit" value="View">
+									</form></td>
 									<td><%=v.getName()%></td>
 									<td><%=v.getCompanyName()%></td>
 									<td><%=((v.getSite() == null) ? "" : v.getSite())%></td>
 									<!-- if session access type is admin or staff i.e. there is a access type then display idno with hyperlink -->
-									<%if(userType == null) { %>
-										<td style="display:none;"><%=v.getIdNo()%></td>
-									<% 
-									} else{
-									%>
-										 <td><a href="/retrieveToPopulate?idNo=<%=v.getIdNo()%>&idType=<%=v.getIdType()%>"><%=v.getIdNo()%></a></td>
 									<%
-									}%>
-									
+									if (userType == null) {
+									%>
+										<td style="display: none;"><%=v.getIdNo()%></td>
+									<%
+									} else {
+									%>
+										<td><a href="/retrieveToPopulate?idNo=<%=v.getIdNo()%>"><%=v.getIdNo()%></a></td>
+									<%
+									}
+									%>
 									<td><%=v.getMobileNo()%></td>
 									<td><%=v.getVehicleNo()%></td>
 									<td><%=v.getHostName()%></td>
@@ -152,7 +165,23 @@
 										</div>
 									</td>
 									<td><%=v.getVisitPurpose()%></td>
-									<td><%=((v.getApprovingOfficer() == null) ? "None" : v.getApprovingOfficer())%></td>
+									<% if (v.getApprovingOfficer() != null && !v.getApprovingOfficer().equalsIgnoreCase("null")) { %>
+										<td><%=v.getApprovingOfficer()%></td>
+									<%
+										}
+										else if(userType != null && (userType.equalsIgnoreCase("OFFICER") || userType.toUpperCase().equals("ADMIN")) ){
+									%>
+										<td><form method="POST" action ="/approveVisitor">
+											<input type="hidden" id="vmsId" name="vmsId" value="<%=v.getVmsId()%>">
+											<input type="submit" name="Submit" value="Approve"></form></td>
+									<%
+										}
+										else {
+											%>
+											<td>None</td>
+											<%
+										}
+									%>
 									<td><%=sdf.format(v.getTimeInDt())%></td>
 									<!-- TO DO: if timeout is null - send to update servlet to update with system time -->
 									<% if (v.getTimeOutDt() != null) { %>
@@ -191,25 +220,30 @@
 				
 				<!-- Delete all record function is for K11 Admin only -->
 				<%if (request.getSession(false).getAttribute("usertype") != null) { %>
-					<a href="/clientMain.jsp" class="btn btn-warning btn-lg active" role="button"
-					aria-pressed="true">Back</a>
+					<a href="/resetPassword.jsp" class="btn btn-warning btn-lg active"
+					role="button" aria-pressed="true">Change Password</a>
 					
-					<% 
-					String usertype = (String) request.getSession(false).getAttribute("usertype");
-					if (usertype.toUpperCase().equals("ADMIN")){ %>
-						<a href="deleteAllVisitor" class="btn btn-warning btn-lg active"
-						role="button" aria-pressed="true">Delete Visitor Record</a>
-						
-						<a href="managedatabase.jsp" class="btn btn-warning btn-lg active"
-						role="button" aria-pressed="true">Manage Visitor Database</a>
-					<%	
+					<% if(!userType.equals("WAREHOUSE")){  %>
+						<a href="/clientMain.jsp" class="btn btn-warning btn-lg active" role="button"
+						aria-pressed="true">Back</a>
+					
+						<% 
+						String usertype = (String) request.getSession(false).getAttribute("usertype");
+						if (usertype.toUpperCase().equals("ADMIN")){ %>
+							<a href="deleteAllVisitor" class="btn btn-warning btn-lg active"
+							role="button" aria-pressed="true">Delete Visitor Record</a>
+							
+							<a href="managedatabase.jsp" class="btn btn-warning btn-lg active"
+							role="button" aria-pressed="true">Manage Visitor Database</a>
+						<%	
+						}
 					}
-					
 				%>
 				<% 
 				}
 				else { 
 				%>
+				
 				<a href="/index.jsp" class="btn btn-warning btn-lg active" role="button"
 							aria-pressed="true">Back</a>
 				<%}%>

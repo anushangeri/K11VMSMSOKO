@@ -1,9 +1,3 @@
-<%-- 
-    Document   : loginCSS
-    Created on : Sep 19, 2014, 5:58:46 PM
-    Author     : Wei Fa
---%>
-
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,6 +13,12 @@
 <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="all">
 <link rel="stylesheet" href="css/styles.css" media="all">
 
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
+	type="text/javascript"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
 <style type="text/css">
 .navbar-default {
 	background-color: #9b59b6;
@@ -103,25 +103,19 @@ body {
 	<div class="dropdown">
 		<button class="btn btn-secondary dropdown-toggle" type="button"
 			id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="false">Client Options</button>
+			aria-expanded="false">Management Options</button>
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			<a class="dropdown-item" href="/clientLogin.jsp">Login</a> 
-			<a class="dropdown-item" href="/resetPassword.jsp">Reset Password</a> 
+			<a class="dropdown-item" href="/resetPassword.jsp">Change Password</a> 
 		</div>
 	</div>
 </div>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
-	type="text/javascript"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
 <title>K11 VMS</title>
 </head>
 <body>
 	<div class="container">
-		<h1 id="k11title">VMS MSOKO</h1>
+		<h1 id="k11title">VMS SWV</h1>
 		<center>
 			<b>by K11 SECURITY ENGINEERING</b>
 		</center>
