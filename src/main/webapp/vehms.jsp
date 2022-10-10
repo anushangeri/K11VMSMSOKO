@@ -88,7 +88,9 @@
 																				15,
 																				16,
 																				17,
-																				18 ],
+																				18,
+																				19,
+																				20],
 																		format : {
 																			header : function(
 																					data,
@@ -176,6 +178,8 @@
 					<%
 					}
 					%>
+					<th class="th-sm">Created By</th>
+					<th class="th-sm">Last Modified By</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -334,6 +338,8 @@
 					}
 					}
 					%>
+					<td><%=(v.getCreatedBy() != null ? v.getCreatedBy() : "")%></td>
+					<td><%=(v.getLastModifiedBy() != null ? v.getLastModifiedBy() : "")%></td>
 				</tr>
 				<%
 				}

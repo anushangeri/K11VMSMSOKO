@@ -222,29 +222,12 @@ function getSMSOTP()
 								oninput="this.value = this.value.toUpperCase()"
 								value="<%=((v == null) ? "" : v.getVisitorCardId())%>" <%=readOnlyStatus %>>
 						</div>
-<!-- 						<div class="form-group col-md-6"> -->
-<!-- 							<label for="temperature">Temperature: </label> <input type="text" -->
-<!-- 								class="form-control" name="temperature" id="temperature" -->
-<!-- 								placeholder="36.6" minlength="2" maxlength="4" required> -->
-<!-- 						</div> -->
 						<div class="form-group col-md-6">
 							<label for="remarks">Remarks (其他): </label> <input type="text"
 								class="form-control" name="remarks" id="remarks" 
-								value="<%=((v == null) ? "" : v.getRemarks())%>" <%=readOnlyStatus %>>
+								value="<%=((v == null) ? "" : v.getRemarks())%>" <%=readOnlyStatus.equals("readonly") ? readOnlyStatus : ""%>>
 						</div>
 					</div>
-<!-- 					<div class="form-row checkbox"> -->
-<!-- 						<input type="checkbox" id="coviddeclaration" -->
-<!-- 							name="coviddeclaration" value="Yes" required> <label -->
-<!-- 							for="coviddeclaration"> I confirm that I am NOT -->
-<!-- 							experiencing any of the following symptoms: <br> • fever -->
-<!-- 							(feeling hot to the touch, a temperature of 37.8 degrees Celsius -->
-<!-- 							or higher)<br> • new onset of cough (continuous, more than -->
-<!-- 							usual)<br> • difficulty breathing<br> <b>*Individuals -->
-<!-- 								are required to self-identify should they experience any -->
-<!-- 								COVID-19 symptoms.</b> -->
-<!-- 						</label> -->
-<!-- 					</div> -->
 					<br>
 					<div id = "officerLogin" class="form-row">
 					<i>Please aproach guard house and seek approval from security officer on duty.</i>
@@ -260,6 +243,34 @@ function getSMSOTP()
 								><input type="checkbox" onclick="showPassword()">Show Password
 						</div>
 					</div>
+					<%if(readOnlyStatus.equals("readonly")){ %>
+						<div class="form-row">
+							<div class="form-group col-md-3">
+								<label for="createdBy">Created By: </label> <input
+									type="text" class="form-control" name="createdBy"
+									oninput="this.value = this.value.toUpperCase()"
+									value="<%=((v == null) ? "" : v.getCreatedBy())%>" readonly>
+							</div>
+							<div class="form-group col-md-3">
+								<label for="createdByDt">Created By Date:
+								</label> <input type="text" class="form-control"
+									name="createdByDt"
+									value="<%=((v == null) ? "" : v.getCreatedByDt())%>" readonly>
+							</div>
+							<div class="form-group col-md-3">
+								<label for="lastModifiedBy">Last Modified By: </label> <input
+									type="text" class="form-control" name="lastModifiedBy"
+									oninput="this.value = this.value.toUpperCase()"
+									value="<%=((v == null) ? "" : v.getLastModifiedBy())%>" readonly>
+							</div>
+							<div class="form-group col-md-3">
+								<label for="lastModifiedByDt">Last Modified By Date:
+								</label> <input type="text" class="form-control"
+									name="lastModifiedByDt"
+									value="<%=((v == null) ? "" : v.getLastModifiedByDt())%>" readonly>
+							</div>
+						</div>
+					<%} %>
 					<div class="form-row">
 						<button type="submit" class="btn btn-primary btn-lg active" <%=readOnlyStatus.equals("readonly") ? "disabled" : ""%>>Submit
 							Record</button>

@@ -1,4 +1,3 @@
-
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
@@ -155,6 +154,12 @@
 		<display-name>CVMSArchivedTblServlet</display-name>
 		<servlet-name>CVMSArchivedTblServlet</servlet-name>
 		<servlet-class>net.javatutorial.tutorials.CVMSArchivedTblServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description />
+		<display-name>UVMSArchiveTblServlet</display-name>
+		<servlet-name>UVMSArchiveTblServlet</servlet-name>
+		<servlet-class>net.javatutorial.tutorials.UVMSArchiveTblServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<description />
@@ -476,6 +481,10 @@
 	<servlet-mapping>
 		<servlet-name>CVMSArchivedTblServlet</servlet-name>
 		<url-pattern>/createVmsArchivedTbl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UVMSArchiveTblServlet</servlet-name>
+		<url-pattern>/updateVmsArchivedTbl</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ArchiveRecordsServlet</servlet-name>
