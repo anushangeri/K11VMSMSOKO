@@ -99,7 +99,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				System.out.println("retrieved vehicles current month successful");
 				
 				LocalDate localDate = LocalDate.now(ZoneId.of("GMT+08:00"));
-				String fileName = "vms_records_msoko"+ localDate +".xls";
+				String fileName = "vms_records_kn"+ localDate +".xls";
 				
 				// workbook object
 				XSSFWorkbook workbook = new XSSFWorkbook();
@@ -387,7 +387,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 					MimeMessage message = new MimeMessage(session);
 					message.setFrom(new InternetAddress(user));
 					message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-					message.setSubject("K11 VMS Records for MSOKO");
+					message.setSubject("K11 VMS Records for Kuehne + Nagel");
 
 					// Create the message part
 					BodyPart messageBodyPart = new MimeBodyPart();
