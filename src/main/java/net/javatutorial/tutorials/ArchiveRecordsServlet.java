@@ -367,8 +367,6 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				workbook.close();
 				// out.close();
 
-				String to = "k11.sivalingam@gmail.com";// change accordingly
-				String toClient = "charmaine@mitsui-soko.com.sg";// change accordingly
 				final String user = "Shangeri1994@k11.com.sg";// change accordingly
 				final String password = "Sh@ngeri94";// change accordingly
 
