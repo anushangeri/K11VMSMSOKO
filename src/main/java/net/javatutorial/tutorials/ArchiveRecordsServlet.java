@@ -387,8 +387,8 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				try {
 					MimeMessage message = new MimeMessage(session);
 					message.setFrom(new InternetAddress(user));
-					message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-					message.addRecipient(Message.RecipientType.TO, new InternetAddress(toClient));
+					message.setRecipients(Message.RecipientType.TO, new InternetAddress(to));
+					message.setRecipients(Message.RecipientType.TO, new InternetAddress(toClient));
 					message.setSubject("K11 VMS Records for MSOKO");
 
 					// Create the message part
