@@ -40,7 +40,7 @@
 						modifier : {
 							selected : true
 						},
-						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+						columns : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
 						format : {
 							header : function(data, columnIdx) {
 								return data;
@@ -108,7 +108,7 @@
 								<tr>
 									<td><%=v.getAccountId()%></td>
 									<td><%=v.getName()%></td>
-									<td><%=v.getSite()%></td>
+									<td><%=(v.getSite() != null &&  v.getSite().length > 0 ? Arrays.toString(v.getSite()) : "")%></td>
 									<td><%=v.getIdType()%></td>
 									<td><%=v.getIdNo()%></td>
 									<td><%=v.getAccessType()%></td>
@@ -145,6 +145,8 @@
 	</div>
 		<div class="container body-content">
 			<center>
+				<a href="/retrieveDropdownForClientForm" class="btn btn-warning btn-lg active"
+					role="button" aria-pressed="true">Create Client Record</a>
 				<a href="clientMain.jsp" class="btn btn-warning btn-lg active"
 					role="button" aria-pressed="true">Back</a>
 			</center>

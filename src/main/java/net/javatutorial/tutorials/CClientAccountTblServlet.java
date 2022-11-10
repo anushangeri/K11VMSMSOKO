@@ -30,7 +30,7 @@ public class CClientAccountTblServlet extends HttpServlet {
 		
 		String accountId = "1";
 		String name = "K11ADMIN";
-		String site = null;
+		String[] site = {};
 		String idType = "NRIC";
 		String idNo = "K11ADMIN";
 		String password= "P@ssw0rd";
@@ -44,7 +44,7 @@ public class CClientAccountTblServlet extends HttpServlet {
 				
 		ClientAccount v = new ClientAccount( accountId,  name, site, idType, idNo,  hashedPassword, salt, accessType, timestamp, timestamp);
 		
-		String message = ClientAccountManagerDAO.addClientAccount(v);
+		responseObj = ClientAccountManagerDAO.addClientAccount(v);
 		
 		request.setAttribute("responseObj", responseObj);
         RequestDispatcher rd = request.getRequestDispatcher("managedatabase.jsp");

@@ -1,6 +1,7 @@
 package net.javatutorial.DAO;
 
 import java.net.URISyntaxException;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,16 +18,16 @@ public class ClientAccountManagerDAO {
 		Connection connection = null;
 		ResultSet rs = null;
 		Statement stmt = null;
-		String message = "";
+		String message = "Error occurred when adding client.";
 		try {
 			connection = Main.getConnection();
 			stmt = connection.createStatement();
-
+			Array arraySites = connection.createArrayOf("text", v.getSite());
 	        stmt.executeUpdate("INSERT INTO CLIENTACCOUNT "
 	        		+  "(ACCOUNT_ID, NAME, SITE, ID_TYPE, ID_NO, PASSWORD, SALT, ACCESS_TYPE, CREATED_DT, MODIFIED_DT)" + 
-	        		"   VALUES ('" +v.getAccountId()+ "','" +v.getName()+ "','" +v.getSite()+ "','" +v.getIdType()+ "','" 
+	        		"   VALUES ('" +v.getAccountId()+ "','" +v.getName()+ "','" +arraySites+ "','" +v.getIdType()+ "','" 
 	        		+v.getIdNo()+ "','" +v.getPassword()+ "','" +v.getSalt()+ "','" +v.getAccessType()+ "','" +v.getCreatedDt()+ "','" +v.getModifiedDt()+"')");
-	        rs = stmt.executeQuery("SELECT LAST(NAME) FROM CLIENTACCOUNT;");
+	        rs = stmt.executeQuery("SELECT MAX(account_id) FROM CLIENTACCOUNT;");
 	        while (rs.next()) {
 	        	message = "Successfully Added Client Account.";
 	        }
@@ -42,7 +43,6 @@ public class ClientAccountManagerDAO {
 		finally {
         	Main.close(connection, stmt, rs);
         }
-		message = "Successful";
 		return message;
 	}
 	public static String updateClientAccountPassword(ClientAccount v){
@@ -88,7 +88,7 @@ public class ClientAccountManagerDAO {
 			connection = Main.getConnection();
 			stmt = connection.createStatement();
 //	        stmt.executeUpdate("SELECT count(*) FROM EMPLOYEES;");
-	        rs = stmt.executeQuery("SELECT MAX(ACCOUNT_ID) FROM CLIENTACCOUNT;");
+	        rs = stmt.executeQuery("SELECT MAX(CAST(ACCOUNT_ID AS INT)) FROM CLIENTACCOUNT;");
 	        if(rs != null) {
 	        	while (rs.next()) {
 		        	if(rs.getString(1) != null && !rs.getString(1).isEmpty()) {
@@ -128,9 +128,10 @@ public class ClientAccountManagerDAO {
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
+            	Array a = rs.getArray(3);
             	v = new ClientAccount(rs.getString(1), 
             			rs.getString(2),
-            			rs.getString(3),
+            			(String[]) a.getArray(),
             			rs.getString(4),
             			rs.getString(5),
             			rs.getString(6),
@@ -165,9 +166,10 @@ public class ClientAccountManagerDAO {
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
+            	Array a = rs.getArray(3);
             	v = new ClientAccount(rs.getString(1), 
             			rs.getString(2),
-            			rs.getString(3),
+            			(String[]) a.getArray(),
             			rs.getString(4),
             			rs.getString(5),
             			rs.getString(6),
@@ -201,9 +203,10 @@ public class ClientAccountManagerDAO {
 
             rs = pstmt.executeQuery();
             while (rs.next()) {
+            	Array a = rs.getArray(3);
             	v = new ClientAccount(rs.getString(1), 
             			rs.getString(2),
-            			rs.getString(3),
+            			(String[])a.getArray(),
             			rs.getString(4),
             			rs.getString(5),
             			rs.getString(6),

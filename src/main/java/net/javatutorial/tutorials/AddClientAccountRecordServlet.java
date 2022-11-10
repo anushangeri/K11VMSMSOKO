@@ -27,14 +27,14 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 		
 		String accountId = "" + nextVal;
 		String name = request.getParameter("name").trim();
-		String site = request.getParameter("site");
+		String[] site = request.getParameterValues("sites[]");
 		String idType = request.getParameter("idType");
 		String idNo = request.getParameter("idNo");
 		String password= request.getParameter("psw");
 		String accessType= request.getParameter("accessType");
 		ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Singapore")) ;
 		Timestamp timestamp = Timestamp.valueOf(zdt.toLocalDateTime());
-
+		
 		ArrayList<ClientAccount> vList = ClientAccountManagerDAO.retrieveByID(idNo);
 		String message = "This user already exists. Please verify.";
 		if(vList.size() == 0 ) {
@@ -47,8 +47,7 @@ public class AddClientAccountRecordServlet extends HttpServlet {
 			message = ClientAccountManagerDAO.addClientAccount(v);
 			
 			request.setAttribute("responseObj", message);
-			RequestDispatcher rd = request.getRequestDispatcher("clientLogin.jsp");
-	        rd.forward(request, response);
+			response.sendRedirect("/retrieveAllClientRecords");
 		}
 		else {
 			request.setAttribute("responseObj", message);
