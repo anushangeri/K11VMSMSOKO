@@ -73,7 +73,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 		// check to see if the given date really is the last day of this month
 		System.out.println( "check to see if the given date really is the last day of this month");
 		System.out.println( cal.get(Calendar.DAY_OF_MONTH) == lastDay);
-		if(cal.get(Calendar.DAY_OF_MONTH) == lastDay) {
+		if(cal.get(Calendar.DAY_OF_MONTH) != lastDay) {
 			System.out.println( "it is the last day of the month, so batch job will do archive db clean up and email results");
 			
 			try 
@@ -367,7 +367,7 @@ public class ArchiveRecordsServlet extends HttpServlet {
 				workbook.close();
 				// out.close();
 
-				final String user = "Shangeri1994@k11.com.sg";// change accordingly
+				final String user = "shangeri.sivalingam@k11.com.sg";// change accordingly
 				final String password = "Sh@ngeri94";// change accordingly
 
 				Properties properties = System.getProperties();
