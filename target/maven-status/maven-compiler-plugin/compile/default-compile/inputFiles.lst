@@ -1,26 +1,74 @@
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\UpdateVehicleDeliveryNoticeRecordServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\VMSCheckNRICServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\UVMSTblServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\Main.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\entity\Visitor.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\AddVisitorRecordServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\SimpleServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\DAO\VMSTblDAO.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\DeleteAllVisitorRecordServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\RetrieveVisitorByNRICServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\UpdateVehicleLorryChetRecordServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\AddVehicleRecordServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\CVMSTblServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\ViewVehicleRecordServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\CVehMSTblServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\DAO\VehMSManagerDAO.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\entity\Vehicle.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\DAO\VehMSTblDAO.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\entity\package-info.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\UpdateVehicleTimeOutRecordServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\UpdateVisitorRecordServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\UVehMSTblServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\DAO\VMSManagerDAO.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\DeleteAllVehicleRecordServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\RetrieveVehicleByNRICServlet.java
-E:\ShangeriStuffPleasedontdelete\ITStuff\K11VMSClients\MSOKO\src\main\java\net\javatutorial\tutorials\ViewVisitorRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\UVehMSTblServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\AddSiteRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\ArchiveRecordsServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\UpdateSiteRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\SendOTPSMSServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\DAO\ClientAccountManagerDAO.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\DAO\SiteTblDAO.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\entity\Visitor.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\UpdateVehicleApprovalRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\DAO\VMSTblDAO.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\DAO\VMSManagerDAO.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\DAO\DropdownListTblDAO.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\DAO\VMSArchiveManagerDAO.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\DAO\VehMSArchiveTblDAO.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\AddVisitorRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\CClientAccountTblServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\VMSCheckNRICServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\UpdateVehicleRemarksRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\ArchiveVisitorRecordsServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\DeleteAllVehicleRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\DeleteSiteServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\SimpleServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\DAO\VehMSManagerDAO.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\RetrieveVisitorByNRICServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\CSiteTblServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\UpdateVisitorRemarksRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\DAO\VehMSTblDAO.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\PasswordUtils.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\USiteTblServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\UVMSArchiveTblServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\entity\Dropdown.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\DAO\ClientAccountTblDAO.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\AddVehicleRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\entity\Site.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\ViewClientRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\ViewVisitorRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\ResetPasswordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\DeleteAllVisitorRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\RetrieveDropdownByKeyServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\RetrieveDropdownForAddClientAccountFormServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\UpdateVisitorRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\SchedulerMain.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\EditSiteBySiteIDServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\CVMSTblServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\DAO\VMSArchiveTblDAO.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\RetrieveVehicleByNRICServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\entity\package-info.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\CVehMSTblServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\UpdateVehicleCustomTimeOutRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\CVMSArchivedTblServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\OverridePasswordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\ViewVehicleRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\UVMSTblServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\UpdateVehicleLorryChetRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\CDropdownTblServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\entity\Vehicle.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\ViewDropdownRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\ProcessPasswordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\UpdateVehicleTimeOutRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\entity\ClientAccount.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\UpdateVisitorApprovingOfficerRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\ViewSiteRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\DAO\SiteManagerDAO.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\UClientAccountTblServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\AddDropdownRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\UpdateVehicleDeliveryNoticeRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\AddClientAccountRecordServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\CVehMSArchivedTblServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\DAO\DropdownListManagerDAO.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\DAO\VehMSArchiveManagerDAO.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\UVehMSArchiveTblServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\DeleteClientAccountServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\DeleteDropdownbyDropdownIdServlet.java
+E:\anu\Code\VMS Clients\K11VMSMSOKO\src\main\java\net\javatutorial\tutorials\Main.java

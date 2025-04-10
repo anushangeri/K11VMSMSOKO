@@ -41,6 +41,8 @@
 							• visitor <br> 
 							• staff <br> 
 							• government agency <br> 
+							• gate pass <br> 
+							• commercial vehicle <br>
 							Select this.
 						</div>
 					</div>
@@ -52,9 +54,7 @@
 				<button type="submit" id="removeBackground">
 					<div class="card bg-warning text-white">
 						<div class="card-body font-size-percent">
-							Are you one of the following? <br> 
-							• gate pass <br> 
-							• commercial vehicle <br>
+							Are you one of the following? <br>
 							• container <br> 
 							Select this.
 						</div>
